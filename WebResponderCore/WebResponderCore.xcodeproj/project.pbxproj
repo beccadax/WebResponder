@@ -77,13 +77,11 @@
 		847911F11B36A94100BC5426 /* Requests and Responses */ = {
 			isa = PBXGroup;
 			children = (
-				847911D61B36A7A300BC5426 /* codes2swift.swift */,
-				847911D71B36A7A300BC5426 /* http-status-codes-1.csv */,
-				847911D81B36A7A300BC5426 /* HTTPMethod.swift */,
 				847911D91B36A7A300BC5426 /* HTTPRequestType.swift */,
 				847911DA1B36A7A300BC5426 /* HTTPResponseType.swift */,
+				847911D81B36A7A300BC5426 /* HTTPMethod.swift */,
 				847911DB1B36A7A300BC5426 /* HTTPStatus.swift */,
-				847911DC1B36A7A300BC5426 /* HTTPStatusGenerated.swift */,
+				847911F61B36CFF300BC5426 /* Generated Status Codes */,
 			);
 			name = "Requests and Responses";
 			sourceTree = "<group>";
@@ -106,6 +104,16 @@
 				847911DE1B36A7A300BC5426 /* SimpleHTTPResponse.swift */,
 			);
 			name = "Simple Types";
+			sourceTree = "<group>";
+		};
+		847911F61B36CFF300BC5426 /* Generated Status Codes */ = {
+			isa = PBXGroup;
+			children = (
+				847911D61B36A7A300BC5426 /* codes2swift.swift */,
+				847911D71B36A7A300BC5426 /* http-status-codes-1.csv */,
+				847911DC1B36A7A300BC5426 /* HTTPStatusGenerated.swift */,
+			);
+			name = "Generated Status Codes";
 			sourceTree = "<group>";
 		};
 		849371D51B36A71E008BEB79 = {
