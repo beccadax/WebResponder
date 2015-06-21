@@ -19,12 +19,7 @@ public protocol HTTPResponseType {
 
 public extension HTTPResponseType {
     mutating func responseOfType<T: HTTPResponseType>(type: T.Type) -> T? {
-        if let me = self as? T {
-            return me
-        }
-        else {
-            return nil
-        }
+        return self as? T
     }
 }
 
@@ -55,12 +50,7 @@ public extension LayeredHTTPResponseType {
     }
     
     mutating func responseOfType<T: HTTPResponseType>(type: T.Type) -> T? {
-        if let me = self as? T {
-            return me
-        }
-        else {
-            return nextResponse.responseOfType(type)
-        }
+        return self as? T ?? nextResponse.responseOfType(type)
     }
 }
 

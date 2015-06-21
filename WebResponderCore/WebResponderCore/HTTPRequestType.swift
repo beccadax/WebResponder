@@ -18,12 +18,7 @@ public protocol HTTPRequestType {
 
 public extension HTTPRequestType {
     func requestOfType<T: HTTPRequestType>(type: T.Type) -> T? {
-        if let me = self as? T {
-            return me
-        }
-        else {
-            return nil
-        }
+        return self as? T
     }
 }
 
@@ -46,12 +41,7 @@ public extension LayeredHTTPRequestType {
     }
     
     func requestOfType<T: HTTPRequestType>(type: T.Type) -> T? {
-        if let me = self as? T {
-            return me
-        }
-        else {
-            return previousRequest.requestOfType(type)
-        }
+        return self as? T ?? previousRequest.requestOfType(type)
     }
 }
 
