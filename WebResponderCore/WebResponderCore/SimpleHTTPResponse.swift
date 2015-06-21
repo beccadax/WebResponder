@@ -13,7 +13,7 @@ public class SimpleHTTPResponse: HTTPResponseType {
     
     public var completion: (SimpleHTTPResponse, ErrorType?) -> Void
     
-    init(completion: (SimpleHTTPResponse, ErrorType?) -> Void) {
+    public init(completion: (SimpleHTTPResponse, ErrorType?) -> Void) {
         self.completion = completion
     }
     

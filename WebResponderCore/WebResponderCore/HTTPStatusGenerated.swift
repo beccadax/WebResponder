@@ -1,4 +1,4 @@
-// Generated from /Users/brent/Desktop/Projects/WebResponder/WebResponderCore/http-status-codes-1.csv by /Users/brent/Desktop/Projects/WebResponder/WebResponderCore/codes2swift.swift
+// Generated from /Users/brent/Desktop/Projects/WebResponder/WebResponderCore/WebResponderCore/http-status-codes-1.csv by /Users/brent/Desktop/Projects/WebResponder/WebResponderCore/WebResponderCore/codes2swift.swift
 
 public extension HTTPStatus {
     static let Continue = HTTPStatus(code: 100)
