@@ -11,7 +11,7 @@ public protocol HTTPRequestType {
     var method: HTTPMethod { get }
     var headers: [String: [String]] { get }
     
-    var body: AnySequence<UInt8> { get }
+    var body: HTTPBodyType { get }
     
     func requestOfType<T: HTTPRequestType>(type: T.Type) -> T?
 }
@@ -36,7 +36,7 @@ public extension LayeredHTTPRequestType {
     var headers: [String: [String]] {
         return previousRequest.headers
     }
-    var body: AnySequence<UInt8> {
+    var body: HTTPBodyType {
         get { return previousRequest.body }
     }
     

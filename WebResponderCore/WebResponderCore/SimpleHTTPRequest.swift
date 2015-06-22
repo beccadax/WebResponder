@@ -11,5 +11,5 @@ public struct SimpleHTTPRequest: HTTPRequestType {
     public var method: HTTPMethod = .GET
     public var headers: [String: [String]] = [:]
     
-    public var body: AnySequence<UInt8> = AnySequence(EmptyCollection())
+    public var body: HTTPBodyType = EmptyHTTPBody()
 }

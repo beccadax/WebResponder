@@ -9,7 +9,7 @@
 public protocol HTTPResponseType {
     var status: HTTPStatus { get set }
     var headers: [String: [String]] { get set }
-    var body: AnySequence<UInt8> { get set }
+    var body: HTTPBodyType { get set }
     
     mutating func respond()
     mutating func failWithError(error: ErrorType)
@@ -36,7 +36,7 @@ public extension LayeredHTTPResponseType {
         get { return nextResponse.headers }
         set { nextResponse.headers = headers }
     }
-    var body: AnySequence<UInt8> {
+    var body: HTTPBodyType {
         get { return nextResponse.body }
         set { nextResponse.body = newValue }
     }

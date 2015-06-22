@@ -9,7 +9,7 @@
 public class SimpleHTTPResponse: HTTPResponseType {
     public var status: HTTPStatus = .OK
     public var headers: [String: [String]] = [:]
-    public var body: AnySequence<UInt8> = AnySequence(EmptyCollection())
+    public var body: HTTPBodyType = EmptyHTTPBody()
     
     public var completion: (SimpleHTTPResponse, ErrorType?) -> Void
     
