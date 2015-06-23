@@ -7,13 +7,13 @@
 //
 
 public struct UnicodeEncoder<UnicodeCodec: UnicodeCodecType, Sequence: SequenceType where UnicodeCodec.CodeUnit: UnsignedIntegerType, Sequence.Generator.Element == UnicodeScalar>: SequenceType, GeneratorType {
-    private var estimate: Int
+    private var estimatedScalars: Int
     private var unicodeScalarGenerator: Sequence.Generator
     private var byteBuffer: [UInt8] = []
     
     public init(_ scalars: Sequence, codec: UnicodeCodec.Type) {
         self.unicodeScalarGenerator = scalars.generate()
-        estimate = scalars.underestimateCount()
+        estimatedScalars = scalars.underestimateCount()
     }
     
     public mutating func next() -> UInt8? {
@@ -29,7 +29,7 @@ public struct UnicodeEncoder<UnicodeCodec: UnicodeCodecType, Sequence: SequenceT
             UnicodeCodec.encode(scalar, output: &sink)
         }
         
-        estimate--
+        estimatedScalars--
         return byteBuffer.removeAtIndex(0)
     }
     
@@ -38,6 +38,6 @@ public struct UnicodeEncoder<UnicodeCodec: UnicodeCodecType, Sequence: SequenceT
     }
     
     public func underestimateCount() -> Int {
-        return estimate
+        return estimatedScalars * sizeof(UnicodeCodec.CodeUnit.self)
     }
 }
