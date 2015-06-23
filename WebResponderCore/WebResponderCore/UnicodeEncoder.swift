@@ -11,7 +11,7 @@ public struct UnicodeEncoder<UnicodeCodec: UnicodeCodecType, Sequence: SequenceT
     private var unicodeScalarGenerator: Sequence.Generator
     private var byteBuffer: [UInt8] = []
     
-    init(_ scalars: Sequence, codec: UnicodeCodec.Type) {
+    public init(_ scalars: Sequence, codec: UnicodeCodec.Type) {
         self.unicodeScalarGenerator = scalars.generate()
         estimate = scalars.underestimateCount()
     }
