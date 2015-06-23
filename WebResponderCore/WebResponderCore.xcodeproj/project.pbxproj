@@ -27,6 +27,9 @@
 		847912041B37814C00BC5426 /* UnicodeEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847912031B37814C00BC5426 /* UnicodeEncoder.swift */; };
 		847912061B3785C000BC5426 /* UnsignedIntegerBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847912051B3785C000BC5426 /* UnsignedIntegerBytes.swift */; };
 		847912081B37BF2600BC5426 /* HTTPBodyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847912071B37BF2600BC5426 /* HTTPBodyTests.swift */; };
+		8479120A1B38D9B400BC5426 /* UnicodeEncoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847912091B38D9B400BC5426 /* UnicodeEncoderTests.swift */; };
+		8479120C1B3918FC00BC5426 /* UnicodeDecoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8479120B1B3918FC00BC5426 /* UnicodeDecoderTests.swift */; };
+		8479120F1B39469000BC5426 /* AssertElementsEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8479120E1B39469000BC5426 /* AssertElementsEqual.swift */; };
 		849371E31B36A71E008BEB79 /* WebResponderCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 849371E21B36A71E008BEB79 /* WebResponderCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		849371EA1B36A71E008BEB79 /* WebResponderCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849371DF1B36A71E008BEB79 /* WebResponderCore.framework */; };
 /* End PBXBuildFile section */
@@ -64,6 +67,9 @@
 		847912031B37814C00BC5426 /* UnicodeEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnicodeEncoder.swift; sourceTree = "<group>"; };
 		847912051B3785C000BC5426 /* UnsignedIntegerBytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsignedIntegerBytes.swift; sourceTree = "<group>"; };
 		847912071B37BF2600BC5426 /* HTTPBodyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPBodyTests.swift; sourceTree = "<group>"; };
+		847912091B38D9B400BC5426 /* UnicodeEncoderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnicodeEncoderTests.swift; sourceTree = "<group>"; };
+		8479120B1B3918FC00BC5426 /* UnicodeDecoderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnicodeDecoderTests.swift; sourceTree = "<group>"; };
+		8479120E1B39469000BC5426 /* AssertElementsEqual.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssertElementsEqual.swift; sourceTree = "<group>"; };
 		849371DF1B36A71E008BEB79 /* WebResponderCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebResponderCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		849371E21B36A71E008BEB79 /* WebResponderCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebResponderCore.h; sourceTree = "<group>"; };
 		849371E41B36A71E008BEB79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,6 +145,14 @@
 			name = "Generated Status Codes";
 			sourceTree = "<group>";
 		};
+		8479120D1B39467C00BC5426 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				8479120E1B39469000BC5426 /* AssertElementsEqual.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		849371D51B36A71E008BEB79 = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +188,9 @@
 			children = (
 				847911F41B36A9B900BC5426 /* SimpleHTTPResponseTests.swift */,
 				847912071B37BF2600BC5426 /* HTTPBodyTests.swift */,
+				847912091B38D9B400BC5426 /* UnicodeEncoderTests.swift */,
+				8479120B1B3918FC00BC5426 /* UnicodeDecoderTests.swift */,
+				8479120D1B39467C00BC5426 /* Utility */,
 				849371F01B36A71E008BEB79 /* Info.plist */,
 			);
 			path = WebResponderCoreTests;
@@ -332,8 +349,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8479120C1B3918FC00BC5426 /* UnicodeDecoderTests.swift in Sources */,
 				847911F51B36A9B900BC5426 /* SimpleHTTPResponseTests.swift in Sources */,
+				8479120F1B39469000BC5426 /* AssertElementsEqual.swift in Sources */,
 				847912081B37BF2600BC5426 /* HTTPBodyTests.swift in Sources */,
+				8479120A1B38D9B400BC5426 /* UnicodeEncoderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
