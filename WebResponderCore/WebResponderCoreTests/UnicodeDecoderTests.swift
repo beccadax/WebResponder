@@ -61,4 +61,10 @@ class UnicodeDecoderTests: XCTestCase {
         AssertElementsEqual(decode8([ 0x80 ]), "�".unicodeScalars, "Stray UTF-8 continuation bytes emit errors")
         AssertElementsEqual(decode8([ 0xc0, 0xaf ]), "��".unicodeScalars, "Overlong UTF-8 sequences emit errors")
     }
+    
+    func testUnderestimateCount() {
+        XCTAssertEqual(decode8("hello".utf8).underestimateCount(), 2, "UTF-8 underestimateCount() accurate")
+        XCTAssertEqual(decode16("hello".utf8.flatMap { [0, $0] }).underestimateCount(), 3, "UTF-16 underestimateCount() accurate")
+        XCTAssertEqual(decode32("hello".utf8.flatMap { [0, 0, 0, $0] }).underestimateCount(), 5, "UTF-32 underestimateCount() accurate")
+    }
 }
