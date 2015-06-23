@@ -53,4 +53,10 @@ class UnicodeEncoderTests: XCTestCase {
         AssertElementsEqual(encode32("κόσμε"), [0, 0, 0x03, 0xba, 0, 0, 0x1f, 0x79, 0, 0, 0x03, 0xc3, 0, 0, 0x03, 0xbc, 0, 0, 0x03, 0xb5], "UTF32: Basic multilingual plane")
         AssertElementsEqual(encode32("🜀🜁🜂🜃🜄"), [0x00, 0x01, 0xf7, 0x00, 0x00, 0x01, 0xf7, 0x01, 0x00, 0x01, 0xf7, 0x02, 0x00, 0x01, 0xf7, 0x03, 0x00, 0x01, 0xf7, 0x04], "UTF32: Extraplanar symbols")
     }
+    
+    func testUnderestimateCount() {
+        XCTAssertEqual(encode8("hello").underestimateCount(), 5, "UTF-8 underestimateCount() accurate")
+        XCTAssertEqual(encode16("hello").underestimateCount(), 10, "UTF-16 underestimateCount() accurate")
+        XCTAssertEqual(encode32("hello").underestimateCount(), 20, "UTF-32 underestimateCount() accurate")
+    }
 }
