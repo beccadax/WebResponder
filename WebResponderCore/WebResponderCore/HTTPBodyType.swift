@@ -34,7 +34,8 @@ public extension HTTPBodyType {
 }
 
 public extension SequenceType {
-    // XXX compiler bug: can't = underestimateCount()
+    // XXX compiler bug 21500900: can't = underestimateCount()
+    // mutating func read(estimatedSize size: Int = underestimateCount()) -> [Generator.Element] {
     mutating func read(estimatedSize size: Int? = nil) -> [Generator.Element] {
         var array: [Generator.Element] = []
         array.reserveCapacity(size ??  underestimateCount())
