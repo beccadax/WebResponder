@@ -18,12 +18,8 @@ public protocol HTTPBodyType: class {
 
 public extension HTTPBodyType {
     func readBytes() -> [UInt8] {
-        let (size, sequence) = readByteSequence()
-        
-        var array: [UInt8] = []
-        array.reserveCapacity(size)
-        array.extend(sequence)
-        return array
+        var (size, sequence) = readByteSequence()
+        return sequence.read(estimatedSize: size)
     }
     
     func readUnicode<UnicodeCodec: UnicodeCodecType where UnicodeCodec.CodeUnit: UnsignedIntegerType>(codec: UnicodeCodec.Type) -> AnySequence<UnicodeScalar> {
@@ -38,9 +34,10 @@ public extension HTTPBodyType {
 }
 
 public extension SequenceType {
-    mutating func read() -> [Generator.Element] {
+    // XXX compiler bug: can't = underestimateCount()
+    mutating func read(estimatedSize size: Int? = nil) -> [Generator.Element] {
         var array: [Generator.Element] = []
-        array.reserveCapacity(underestimateCount())
+        array.reserveCapacity(size ??  underestimateCount())
         array.extend(self)
         return array
     }
