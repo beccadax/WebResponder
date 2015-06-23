@@ -15,6 +15,10 @@ public extension SequenceType where Generator.Element == UnicodeScalar {
     }
 }
 
+// Estimated bytes per character. Worst-case of UTF8 and UTF16, only case of 32.
+// Used for understimateCount.
+private let estimationFactor = 4
+
 public struct UnicodeDecoder<UnicodeCodec: UnicodeCodecType, Sequence: SequenceType where UnicodeCodec.CodeUnit: UnsignedIntegerType, Sequence.Generator.Element == UInt8>: SequenceType, GeneratorType {
     private var codeUnitGenerator: UIntegerGenerator<UnicodeCodec.CodeUnit, Sequence.Generator>
     private var estimate: Int
@@ -23,14 +27,6 @@ public struct UnicodeDecoder<UnicodeCodec: UnicodeCodecType, Sequence: SequenceT
     public init(_ seq: Sequence, codec type: UnicodeCodec.Type) {
         self.codec = type()
         self.codeUnitGenerator = UIntegerGenerator(type: UnicodeCodec.CodeUnit.self, byteGenerator: seq.generate())
-        
-        let estimationFactor: Int
-        if sizeof(UnicodeCodec.CodeUnit.self) == 1 {
-            estimationFactor = 6        // Worst-case of UTF8
-        }
-        else {
-            estimationFactor = 4        // Worst-case of UTF16, only case UTF32
-        }
         
         self.estimate = seq.underestimateCount() / estimationFactor
     }
