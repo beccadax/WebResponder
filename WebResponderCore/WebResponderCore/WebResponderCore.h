@@ -14,4 +14,4 @@ FOUNDATION_EXPORT double WebResponderCoreVersionNumber;
 //! Project version string for WebResponderCore.
 FOUNDATION_EXPORT const unsigned char WebResponderCoreVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <Stack/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like #import <WebResponderCore/PublicHeader.h>

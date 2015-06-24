@@ -11,13 +11,13 @@
 /// through, it should conform to WebMiddlewareType, which also conforms to this 
 /// type.
 public protocol WebRequestable: class {
-    /// A reference to the handler that this object should send requests to.
-    /// No forwarding should occur until `nextHandler` is set.
+    /// A reference to the responder that this object should send requests to.
+    /// No forwarding should occur until `nextResponder` is set.
     var nextResponder: WebResponderType! { get set }
 }
 
 public extension WebRequestable {
-    /// Passes the request through to the next handler.
+    /// Passes the request through to the next responder.
     func sendRequestToResponder(request: HTTPRequestType, withResponse response: HTTPResponseType) {
         nextResponder.respond(response, toRequest: request)
     }

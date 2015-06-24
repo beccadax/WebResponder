@@ -11,16 +11,17 @@
 /// WebMiddlewareType, which also implies conformance to this type.
 public protocol WebResponderType: class {
     /// Performs the indicated request, responding through the indicated response 
-    /// object. Handlers are asynchronous, so they may call the response's 
+    /// object. Responders are asynchronous, so they may call the response's 
     /// `respond()` method (which completes the request) after this method returns.
     func respond(response: HTTPResponseType, toRequest request: HTTPRequestType)
     
-    /// Returns an array of layers which should be inserted before this responder 
-    /// when it's inserted into a stack.
+    /// Returns an array of middlewares which should be inserted before this 
+    /// responder when it's inserted into a responder chain.
     var requiredMiddleware: [WebMiddlewareType] { get }
 }
 
 extension WebResponderType {
+    // By default, a Web Responder has no required middlewares.
     public var requiredMiddleware: [WebMiddlewareType] {
         return []
     }

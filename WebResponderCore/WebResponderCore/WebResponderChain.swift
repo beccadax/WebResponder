@@ -13,7 +13,7 @@
 public class WebResponderChain: WebRequestable, WebResponderType {
     public var nextResponder: WebResponderType!
     
-    /// Returns the last responder in the stack—typically the actual application.
+    /// Returns the last responder in the chain—typically the actual application.
     public var finalResponder: WebResponderType! {
         var cursor: WebRequestable = self
         while let next = cursor.nextResponder as? WebMiddlewareType {
@@ -22,9 +22,9 @@ public class WebResponderChain: WebRequestable, WebResponderType {
         return cursor.nextResponder
     }
     
-    /// Initializes a stack terminated by a given handler.
     init(responder: WebResponderType) {
         nextResponder = responder
+    /// Initializes a chain terminated by a given responder.
         
         for middleware in responder.requiredMiddleware.reverse() {
             insertMiddleware(middleware, after: self)
@@ -36,12 +36,12 @@ public class WebResponderChain: WebRequestable, WebResponderType {
         sendRequestToResponder(request, withResponse: response)
     }
     
-    /// Adds a layer at the top of the layer stack.
+    /// Adds a middleware at the top of the middleware chain.
     public func prependMiddleware(middleware: WebMiddlewareType) {
         insertMiddleware(middleware, after: self)
     }
     
-    /// Adds a layer at the bottom of the layer stack, right before the final handler.
+    /// Adds a middleware at the bottom of the middleware chain, right before the final responder.
     public func appendMiddleware(middleware: WebMiddlewareType) {
         insertMiddleware(middleware, before: finalResponder)
     }
