@@ -22,11 +22,11 @@ public class WebResponderChain: WebRequestable, WebResponderType {
         return cursor.nextResponder
     }
     
-    init(responder: WebResponderType) {
-        nextResponder = responder
     /// Initializes a chain terminated by a given responder.
+    init(finalResponder: WebResponderType) {
+        nextResponder = finalResponder
         
-        for middleware in responder.requiredMiddleware.reverse() {
+        for middleware in finalResponder.requiredMiddleware.reverse() {
             insertMiddleware(middleware, after: self)
         }
     }
