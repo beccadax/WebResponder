@@ -6,19 +6,19 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
-public protocol HTTPResponseType {
+public protocol HTTPResponseType: class {
     var status: HTTPStatus { get set }
     var headers: [String: [String]] { get set }
     var body: HTTPBodyType { get set }
     
-    mutating func respond()
-    mutating func failWithError(error: ErrorType)
+    func respond()
+    func failWithError(error: ErrorType)
     
-    mutating func responseOfType<T: HTTPResponseType>(type: T.Type) -> T?
+    func responseOfType<T: HTTPResponseType>(type: T.Type) -> T?
 }
 
 public extension HTTPResponseType {
-    mutating func responseOfType<T: HTTPResponseType>(type: T.Type) -> T? {
+    func responseOfType<T: HTTPResponseType>(type: T.Type) -> T? {
         return self as? T
     }
 }
@@ -41,15 +41,15 @@ public extension LayeredHTTPResponseType {
         set { nextResponse.body = newValue }
     }
     
-    mutating func respond() {
+    func respond() {
         nextResponse.respond()
     }
     
-    mutating func failWithError(error: ErrorType) {
+    func failWithError(error: ErrorType) {
         nextResponse.failWithError(error)
     }
     
-    mutating func responseOfType<T: HTTPResponseType>(type: T.Type) -> T? {
+    func responseOfType<T: HTTPResponseType>(type: T.Type) -> T? {
         return self as? T ?? nextResponse.responseOfType(type)
     }
 }
