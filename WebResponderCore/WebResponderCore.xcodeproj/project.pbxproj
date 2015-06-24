@@ -103,13 +103,6 @@
 				847911DA1B36A7A300BC5426 /* HTTPResponseType.swift */,
 				847911D81B36A7A300BC5426 /* HTTPMethod.swift */,
 				847911DB1B36A7A300BC5426 /* HTTPStatus.swift */,
-				847911F71B36D02100BC5426 /* HTTPBodyType.swift */,
-				847911FD1B3757E700BC5426 /* EmptyHTTPBody.swift */,
-				847911FF1B3757FE00BC5426 /* HTTPBodyWithBytes.swift */,
-				847912011B37603400BC5426 /* HTTPBodyWithString.swift */,
-				847911FB1B3737B300BC5426 /* UnicodeDecoder.swift */,
-				847912031B37814C00BC5426 /* UnicodeEncoder.swift */,
-				847912051B3785C000BC5426 /* UnsignedIntegerBytes.swift */,
 				847911F61B36CFF300BC5426 /* Generated Status Codes */,
 			);
 			name = "Requests and Responses";
@@ -153,6 +146,27 @@
 			name = Utility;
 			sourceTree = "<group>";
 		};
+		847912101B3AC2F400BC5426 /* Unicode */ = {
+			isa = PBXGroup;
+			children = (
+				847911FB1B3737B300BC5426 /* UnicodeDecoder.swift */,
+				847912031B37814C00BC5426 /* UnicodeEncoder.swift */,
+				847912051B3785C000BC5426 /* UnsignedIntegerBytes.swift */,
+			);
+			name = Unicode;
+			sourceTree = "<group>";
+		};
+		847912111B3AC30100BC5426 /* Bodies */ = {
+			isa = PBXGroup;
+			children = (
+				847911F71B36D02100BC5426 /* HTTPBodyType.swift */,
+				847911FD1B3757E700BC5426 /* EmptyHTTPBody.swift */,
+				847911FF1B3757FE00BC5426 /* HTTPBodyWithBytes.swift */,
+				847912011B37603400BC5426 /* HTTPBodyWithString.swift */,
+			);
+			name = Bodies;
+			sourceTree = "<group>";
+		};
 		849371D51B36A71E008BEB79 = {
 			isa = PBXGroup;
 			children = (
@@ -176,7 +190,9 @@
 			children = (
 				849371E21B36A71E008BEB79 /* WebResponderCore.h */,
 				847911F11B36A94100BC5426 /* Requests and Responses */,
+				847912111B3AC30100BC5426 /* Bodies */,
 				847911F21B36A94B00BC5426 /* Responders */,
+				847912101B3AC2F400BC5426 /* Unicode */,
 				847911F31B36A99300BC5426 /* Simple Types */,
 				849371E41B36A71E008BEB79 /* Info.plist */,
 			);
