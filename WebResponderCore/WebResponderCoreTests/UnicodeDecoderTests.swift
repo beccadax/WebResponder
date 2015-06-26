@@ -13,6 +13,10 @@ func decode8<Seq: SequenceType where Seq.Generator.Element == UInt8>(bytes: Seq)
     return UnicodeDecoder(bytes, codec: UTF8.self)
 }
 
+func decodeL<Seq: SequenceType where Seq.Generator.Element == UInt8>(bytes: Seq) -> UnicodeDecoder<Latin1, Seq> {
+    return UnicodeDecoder(bytes, codec: Latin1.self)
+}
+
 func decode16<Seq: SequenceType where Seq.Generator.Element == UInt8>(bytes: Seq) -> UnicodeDecoder<UTF16, Seq> {
     return UnicodeDecoder(bytes, codec: UTF16.self)
 }
@@ -37,6 +41,11 @@ class UnicodeDecoderTests: XCTestCase {
         AssertElementsEqual(decode8([0xEF, 0xBB, 0xBF]), "\u{FEFF}".unicodeScalars, "UTF8: Byte order marker")
         AssertElementsEqual(decode8("κόσμε".utf8), "κόσμε".unicodeScalars, "UTF8: Basic multilingual plane")
         AssertElementsEqual(decode8("🜀🜁🜂🜃🜄".utf8), "🜀🜁🜂🜃🜄".unicodeScalars, "UTF8: Extraplanar symbols")
+    }
+    
+    func testLatin1Encoding() {
+        AssertElementsEqual(decodeL("hello".utf8), "hello".unicodeScalars, "Latin1: ASCII")
+        AssertElementsEqual(decodeL("El Niño".unicodeScalars.map { UInt8($0.value) }), "El Niño".unicodeScalars, "Latin1: High characters")
     }
     
     func testUTF16Encoding() {

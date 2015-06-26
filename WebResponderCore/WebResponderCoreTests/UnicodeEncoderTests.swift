@@ -13,6 +13,10 @@ func encode8(string: String) -> UnicodeEncoder<UTF8, String.UnicodeScalarView> {
     return UnicodeEncoder(string.unicodeScalars, codec: UTF8.self)
 }
 
+func encodeL(string: String) -> UnicodeEncoder<Latin1, String.UnicodeScalarView> {
+    return UnicodeEncoder(string.unicodeScalars, codec: Latin1.self)
+}
+
 func encode16(string: String) -> UnicodeEncoder<UTF16, String.UnicodeScalarView> {
     return UnicodeEncoder(string.unicodeScalars, codec: UTF16.self)
 }
@@ -38,6 +42,26 @@ class UnicodeEncoderTests: XCTestCase {
         AssertElementsEqual(encode8("\u{FEFF}"), [0xEF, 0xBB, 0xBF], "UTF8: Byte order marker")
         AssertElementsEqual(encode8("κόσμε"), "κόσμε".utf8, "UTF8: Basic multilingual plane")
         AssertElementsEqual(encode8("🜀🜁🜂🜃🜄"), "🜀🜁🜂🜃🜄".utf8, "UTF8: Extraplanar symbols")
+    }
+    
+    func testLatin1Encoding() {
+        AssertElementsEqual(encodeL("hello"), "hello".utf8, "Latin1: ASCII")
+        AssertElementsEqual(encodeL("El Niño"), "El Niño".unicodeScalars.map { UInt8($0.value) }, "Latin1: High characters")
+        AssertElementsEqual(encodeL("κόσμε"), "?????".utf8, "Latin1: Basic multilingual plane")
+        AssertElementsEqual(encodeL("🜀🜁🜂🜃🜄"), "?????".utf8, "UTF8: Extraplanar symbols")
+    }
+    
+    func testLatin1BOM() {
+        AssertElementsEqual(encodeL("\u{FEFF}El Niño"), "El Niño".unicodeScalars.map { UInt8($0.value) }, "Latin1: Strips BOM")
+    }
+    
+    func testLatin1UnknownCharacterHandler() {
+        let defaultHandler = Latin1.unknownCharacterHandler
+        Latin1.unknownCharacterHandler = { scalar in Array("[U+\(String(scalar.value, radix: 16))]".utf8) } 
+        
+        AssertElementsEqual(encodeL("κόσμε"), "[U+3ba][U+1f79][U+3c3][U+3bc][U+3b5]".utf8, "Latin1: unknownCharacterHandler")
+        
+        Latin1.unknownCharacterHandler = defaultHandler
     }
     
     func testUTF16Encoding() {

@@ -14,5 +14,7 @@ func AssertElementsEqual<Seq1: SequenceType, Seq2: SequenceType where Seq1.Gener
 
 // This variant simply speeds up some slow type inference
 func AssertElementsEqual<Seq1: SequenceType where Seq1.Generator.Element: Equatable>(@autoclosure seq1: Void -> Seq1, @autoclosure _ seq2: Void -> [Seq1.Generator.Element], _ message: String = "Elements are not equal", file: String = __FILE__, line: UInt = __LINE__) {
-    XCTAssertEqual(Array(seq1()), seq2(), message, file: file, line: line)
+    XCTAssertTrue(seq1().elementsEqual(seq2()), message, file: file, line: line)
+    // This version gives better diagnostics, but causes a crash on the testLatin1BOM() test.
+//    XCTAssertEqual(Array(s1), seq2(), message, file: file, line: line)
 }
