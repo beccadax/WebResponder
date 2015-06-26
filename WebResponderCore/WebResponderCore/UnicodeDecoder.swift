@@ -25,7 +25,7 @@ public struct UnicodeDecoder<UnicodeCodec: UnicodeCodecType, Sequence: SequenceT
     private var codec: UnicodeCodec
     
     public init(_ seq: Sequence, codec type: UnicodeCodec.Type) {
-        self.codec = type()
+        self.codec = type.init()
         self.codeUnitGenerator = UIntegerGenerator(type: UnicodeCodec.CodeUnit.self, byteGenerator: seq.generate())
         
         self.estimate = Int(ceil(Float(seq.underestimateCount()) / estimationFactor))
