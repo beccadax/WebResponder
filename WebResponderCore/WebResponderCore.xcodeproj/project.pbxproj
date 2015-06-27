@@ -34,6 +34,7 @@
 		847912151B3AD37900BC5426 /* Latin1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847912141B3AD37900BC5426 /* Latin1.swift */; };
 		849371E31B36A71E008BEB79 /* WebResponderCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 849371E21B36A71E008BEB79 /* WebResponderCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		849371EA1B36A71E008BEB79 /* WebResponderCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849371DF1B36A71E008BEB79 /* WebResponderCore.framework */; };
+		84B7D44C1B3ED273003A2BCC /* CoreVersionResponderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7D44B1B3ED273003A2BCC /* CoreVersionResponderTests.swift */; };
 		84EDD0251B3EAE01003FB925 /* HTTPStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EDD0241B3EAE01003FB925 /* HTTPStatusTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		849371E41B36A71E008BEB79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		849371E91B36A71E008BEB79 /* WebResponderCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebResponderCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		849371F01B36A71E008BEB79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84B7D44B1B3ED273003A2BCC /* CoreVersionResponderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreVersionResponderTests.swift; sourceTree = "<group>"; };
 		84EDD0241B3EAE01003FB925 /* HTTPStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,6 +217,7 @@
 				847912091B38D9B400BC5426 /* UnicodeEncoderTests.swift */,
 				8479120B1B3918FC00BC5426 /* UnicodeDecoderTests.swift */,
 				84EDD0241B3EAE01003FB925 /* HTTPStatusTests.swift */,
+				84B7D44B1B3ED273003A2BCC /* CoreVersionResponderTests.swift */,
 				8479120D1B39467C00BC5426 /* Utility */,
 				849371F01B36A71E008BEB79 /* Info.plist */,
 			);
@@ -379,6 +382,7 @@
 			files = (
 				8479120C1B3918FC00BC5426 /* UnicodeDecoderTests.swift in Sources */,
 				84EDD0251B3EAE01003FB925 /* HTTPStatusTests.swift in Sources */,
+				84B7D44C1B3ED273003A2BCC /* CoreVersionResponderTests.swift in Sources */,
 				847911F51B36A9B900BC5426 /* SimpleHTTPResponseTests.swift in Sources */,
 				8479120F1B39469000BC5426 /* AssertElementsEqual.swift in Sources */,
 				847912081B37BF2600BC5426 /* HTTPBodyTests.swift in Sources */,
