@@ -14,7 +14,7 @@ public struct HTTPStatus {
         self.code = code
     }
     
-    enum Classification: Int {
+    public enum Classification: Int {
         case Informational = 1
         case Success = 2
         case Redirection = 3
@@ -22,8 +22,12 @@ public struct HTTPStatus {
         case ServerError = 5
     }
     
-    var classification: Classification {
+    public var classification: Classification {
         return Classification(rawValue: code / 100)!
+    }
+    
+    public var message: String {
+        return HTTPStatus.messages[self] ?? "Unassigned"
     }
 }
 
@@ -41,10 +45,6 @@ extension HTTPStatus: RawRepresentable {
         else {
             return nil
         }
-    }
-    
-    var message: String {
-        return HTTPStatus.messages[self] ?? "Unassigned"
     }
 }
 
