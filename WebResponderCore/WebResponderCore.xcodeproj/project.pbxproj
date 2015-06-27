@@ -330,6 +330,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/WebResponderCore/http-status-codes-1.csv",
+				"$(SRCROOT)/WebResponderCore/codes2swift.swift",
 			);
 			name = "Generate HTTPStatusGenerated.swift";
 			outputPaths = (
