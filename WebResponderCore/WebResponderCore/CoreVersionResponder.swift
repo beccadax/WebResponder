@@ -6,8 +6,10 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
-class CoreVersionResponder: WebResponderType {
-    func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
+public class CoreVersionResponder: WebResponderType {
+    public init() {}
+    
+    public func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
         var unameResult = utsname()
         uname(&unameResult)
         let platform = withUnsafePointer(&unameResult.version) { tuplePointer in

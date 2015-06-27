@@ -7,6 +7,8 @@
 //
 
 public struct SimpleHTTPRequest: HTTPRequestType {
+    public init() {}
+    
     public var path: String = "/"
     public var method: HTTPMethod = .GET
     public var headers: [String: [String]] = [:]
