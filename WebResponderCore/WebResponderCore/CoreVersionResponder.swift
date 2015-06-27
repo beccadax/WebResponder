@@ -6,8 +6,6 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
-import Foundation
-
 class CoreVersionResponder: WebResponderType {
     func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
         var unameResult = utsname()
@@ -16,13 +14,11 @@ class CoreVersionResponder: WebResponderType {
             String.fromCString(UnsafePointer<Int8>(tuplePointer))!
         } 
 
-        let bundle = NSBundle(forClass: self.dynamicType)
-        let version = bundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        let copyright = bundle.objectForInfoDictionaryKey("NSHumanReadableCopyright") as! String
+        let version = WebResponderCoreVersionNumber
         
         response.status = .OK
         response.headers["Content-Type"] = ["text/html; charset=UTF-8"]
-        response.body = HTTPBody(string: "<!DOCTYPE html><html><head><title>WebResponderCore</title><style>html { font-family: sans-serif; margin: 1em 25%; background-color: #eee } body { border: 1px solid #ddd; background-color: white; font-size: 1.2em/1.5em } dt { font-weight: bold } dd { margin: 0; padding: 0; margin-bottom: 0.5em; }</style></head><body><h1>WebResponderCore</h1><dl><dt>Version</dt><dd>\(version)</dd><dt>Platform</dt><dd>\(platform)</dd><dt>Copyright</dt><dd>\(copyright)</dd></dl></body></html>", codec: UTF8.self)
+        response.body = HTTPBody(string: "<!DOCTYPE html><html><head><title>WebResponderCore</title><style>html { font-family: sans-serif; margin: 1em 25%; background-color: #eee } body { border: 1px solid #ddd; background-color: white; font-size: 1.2em/1.5em } dt { font-weight: bold } dd { margin: 0; padding: 0; margin-bottom: 0.5em; }</style></head><body><h1>WebResponderCore</h1><dl><dt>Version</dt><dd>\(version)</dd><dt>Platform</dt><dd>\(platform)</dd></dl></body></html>", codec: UTF8.self)
         
         response.respond()
     }
