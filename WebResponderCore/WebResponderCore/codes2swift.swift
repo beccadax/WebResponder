@@ -66,8 +66,8 @@ struct StatusLine: RawRepresentable {
         return "static let \(messageSymbol) = HTTPStatus(code: \(code))"
     }
     
-    var switchCase: String {
-        return "case \(code): return \"\(message.unicodeScalars.map { $0.escape(asASCII: true) }.reduce(String(), combine: +))\""
+    var messageLiteral: String {
+        return message.unicodeScalars.map { $0.escape(asASCII: true) }.reduce(String(), combine: +)
     }
 }
 
@@ -96,13 +96,13 @@ for statusLine in statusLines {
     code += "    " + statusLine.constant + "\n"
 }
 
-code += "    \n    var message: String {\n        switch self {\n"
+code += "    \n    static var messages: [HTTPStatus: String] = [\n"
 
 for statusLine in statusLines {
-    code += "            " + statusLine.switchCase + "\n"
+    code += "        \(statusLine.code): \"\(statusLine.messageLiteral)\",\n"
 }
 
-code += "            default: return \"Unassigned\"\n        }\n    }\n}\n"
+code += "    ]\n}\n"
 
 do {
     if outFile == "-" {

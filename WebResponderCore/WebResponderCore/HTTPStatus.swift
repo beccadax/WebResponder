@@ -42,6 +42,10 @@ extension HTTPStatus: RawRepresentable {
             return nil
         }
     }
+    
+    var message: String {
+        return HTTPStatus.messages[self] ?? "Unassigned"
+    }
 }
 
 extension HTTPStatus: IntegerLiteralConvertible {
