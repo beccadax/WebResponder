@@ -137,7 +137,6 @@
 				847911DD1B36A7A300BC5426 /* SimpleHTTPRequest.swift */,
 				847911DE1B36A7A300BC5426 /* SimpleHTTPResponse.swift */,
 				84B7D44F1B3FBB1A003A2BCC /* SimpleWebResponder.swift */,
-				847912121B3ACAC600BC5426 /* CoreVersionResponder.swift */,
 			);
 			name = "Simple Types";
 			sourceTree = "<group>";
@@ -209,6 +208,7 @@
 				847911F21B36A94B00BC5426 /* Responders */,
 				847912101B3AC2F400BC5426 /* Unicode */,
 				847911F31B36A99300BC5426 /* Simple Types */,
+				84B7D4531B3FBF50003A2BCC /* Builtins */,
 				849371E41B36A71E008BEB79 /* Info.plist */,
 			);
 			path = WebResponderCore;
@@ -228,6 +228,14 @@
 				849371F01B36A71E008BEB79 /* Info.plist */,
 			);
 			path = WebResponderCoreTests;
+			sourceTree = "<group>";
+		};
+		84B7D4531B3FBF50003A2BCC /* Builtins */ = {
+			isa = PBXGroup;
+			children = (
+				847912121B3ACAC600BC5426 /* CoreVersionResponder.swift */,
+			);
+			name = Builtins;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
