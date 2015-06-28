@@ -24,7 +24,7 @@ public extension HTTPResponseType {
 }
 
 public protocol LayeredHTTPResponseType: HTTPResponseType {
-    var nextResponse: HTTPResponseType { get set }
+    var nextResponse: HTTPResponseType { get }
 }
 
 public extension LayeredHTTPResponseType {
