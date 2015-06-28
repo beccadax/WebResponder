@@ -6,13 +6,15 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
-public class SimpleWebResponder: WebResponderType {
-    public init(requiredMiddleware: [WebMiddlewareType] = [], implementation: (HTTPResponseType, HTTPRequestType) -> Void) {
+public final class SimpleWebResponder: WebResponderType {
+    public typealias Implementation = (HTTPResponseType, HTTPRequestType) -> Void
+    
+    public init(requiredMiddleware: [WebMiddlewareType] = [], implementation: Implementation) {
         self.requiredMiddleware = requiredMiddleware
         self.implementation = implementation
     }
     
-    private let implementation: (HTTPResponseType, HTTPRequestType) -> Void
+    private let implementation: Implementation
     public let requiredMiddleware: [WebMiddlewareType]
     
     public func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
