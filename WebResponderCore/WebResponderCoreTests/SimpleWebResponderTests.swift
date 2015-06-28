@@ -21,11 +21,14 @@ class SimpleWebResponderTests: XCTestCase {
     }
 
     func testRunsImplementation() {
+        var ran = false
         let responder = SimpleWebResponder { response, request in
-            XCTAssert(true, "Implementation is run when responder is asked to respond")
+            ran = true
             response.respond()
         }
         
         responder.respond(SimpleHTTPResponse { _, _ in }, toRequest: SimpleHTTPRequest())
+        
+        XCTAssert(ran, "Implementation is run when responder is asked to respond")
     }
 }
