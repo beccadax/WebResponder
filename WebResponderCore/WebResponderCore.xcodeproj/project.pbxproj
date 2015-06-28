@@ -84,6 +84,7 @@
 		849371E91B36A71E008BEB79 /* WebResponderCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebResponderCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		849371F01B36A71E008BEB79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B7D44B1B3ED273003A2BCC /* CoreVersionResponderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreVersionResponderTests.swift; sourceTree = "<group>"; };
+		84B7D44D1B3F609C003A2BCC /* RequestIDMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestIDMiddleware.swift; sourceTree = "<group>"; };
 		84B7D44F1B3FBB1A003A2BCC /* SimpleWebResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleWebResponder.swift; sourceTree = "<group>"; };
 		84B7D4511B3FBE26003A2BCC /* SimpleWebResponderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleWebResponderTests.swift; sourceTree = "<group>"; };
 		84EDD0241B3EAE01003FB925 /* HTTPStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusTests.swift; sourceTree = "<group>"; };
@@ -234,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				847912121B3ACAC600BC5426 /* CoreVersionResponder.swift */,
+				84B7D44D1B3F609C003A2BCC /* RequestIDMiddleware.swift */,
 			);
 			name = Builtins;
 			sourceTree = "<group>";
