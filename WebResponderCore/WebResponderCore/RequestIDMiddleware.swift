@@ -6,10 +6,12 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
-class RequestIDMiddleware: WebMiddlewareType {
-    var nextResponder: WebResponderType!
+public class RequestIDMiddleware: WebMiddlewareType {
+    public var nextResponder: WebResponderType!
     
-    func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
+    public init() {}
+    
+    public func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
         let ID = String.hexadecimalUUIDString()
         
         let newRequest = IdentifiedRequest(previousRequest: request, requestID: ID)
