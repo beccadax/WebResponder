@@ -24,4 +24,15 @@ public class SimpleHTTPResponse: HTTPResponseType {
     public func failWithError(error: ErrorType) {
         completion(self, error)
     }
+    
+    // Workarounds for #21584801
+    public func setStatus(newValue: HTTPStatus) {
+        status = newValue
+    }
+    public func setHeaders(newValue: [String : [String]]) {
+        headers = newValue
+    }
+    public func setBody(newValue: HTTPBodyType) {
+        body = newValue
+    }
 }

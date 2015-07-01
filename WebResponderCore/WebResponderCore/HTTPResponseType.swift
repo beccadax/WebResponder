@@ -7,9 +7,15 @@
 //
 
 public protocol HTTPResponseType: class {
-    var status: HTTPStatus { get set }
-    var headers: [String: [String]] { get set }
-    var body: HTTPBodyType { get set }
+    var status: HTTPStatus { get /*set*/ }
+    var headers: [String: [String]] { get /*set*/ }
+    var body: HTTPBodyType { get /*set*/ }
+    
+    // These work around a LayeredHTTPResponseType linking bug in Swift 2 beta 2. 
+    // #21584801 https://gist.github.com/brentdax/b590827afa757e8a9e3b
+    func setStatus(newValue: HTTPStatus)
+    func setHeaders(newValue: [String: [String]])
+    func setBody(newValue: HTTPBodyType)
     
     func respond()
     func failWithError(error: ErrorType)
@@ -30,15 +36,26 @@ public protocol LayeredHTTPResponseType: HTTPResponseType {
 public extension LayeredHTTPResponseType {
     var status: HTTPStatus {
         get { return nextResponse.status }
-        set { nextResponse.status = newValue }
+//        set { nextResponse.status = newValue }
     }
     var headers: [String: [String]] {
         get { return nextResponse.headers }
-        set { nextResponse.headers = headers }
+//        set { nextResponse.headers = headers }
     }
     var body: HTTPBodyType {
         get { return nextResponse.body }
-        set { nextResponse.body = newValue }
+//        set { nextResponse.body = newValue }
+    }
+    
+    // Workarounds for #21584801
+    func setStatus(newValue: HTTPStatus) {
+        nextResponse.setStatus(newValue)
+    }
+    func setHeaders(newValue: [String: [String]]) {
+        nextResponse.setHeaders(newValue)
+    }
+    func setBody(newValue: HTTPBodyType) {
+        nextResponse.setBody(newValue)
     }
     
     func respond() {

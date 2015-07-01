@@ -39,6 +39,7 @@
 		84B7D4521B3FBE26003A2BCC /* SimpleWebResponderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7D4511B3FBE26003A2BCC /* SimpleWebResponderTests.swift */; };
 		84B7D4571B3FD5EC003A2BCC /* SimpleWebMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7D4551B3FD4B6003A2BCC /* SimpleWebMiddleware.swift */; };
 		84B7D4591B3FD67F003A2BCC /* SimpleWebMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7D4581B3FD67F003A2BCC /* SimpleWebMiddlewareTests.swift */; };
+		84B7D45B1B40BB34003A2BCC /* RequestIDMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7D44D1B3F609C003A2BCC /* RequestIDMiddleware.swift */; };
 		84EDD0251B3EAE01003FB925 /* HTTPStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EDD0241B3EAE01003FB925 /* HTTPStatusTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -397,6 +398,7 @@
 				847911E61B36A7A300BC5426 /* HTTPRequestType.swift in Sources */,
 				84B7D4571B3FD5EC003A2BCC /* SimpleWebMiddleware.swift in Sources */,
 				847911E81B36A7A300BC5426 /* HTTPStatus.swift in Sources */,
+				84B7D45B1B40BB34003A2BCC /* RequestIDMiddleware.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

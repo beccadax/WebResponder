@@ -18,9 +18,9 @@ public class CoreVersionResponder: WebResponderType {
 
         let version = WebResponderCoreVersionNumber
         
-        response.status = .OK
-        response.headers["Content-Type"] = ["text/html; charset=UTF-8"]
-        response.body = HTTPBody(string: "<!DOCTYPE html><html><head><title>WebResponderCore</title><style>html { font-family: sans-serif; margin: 1em 25%; background-color: #eee } body { border: 1px solid #ddd; background-color: white; font-size: 1.2em/1.5em } dt { font-weight: bold } dd { margin: 0; padding: 0; margin-bottom: 0.5em; }</style></head><body><h1>WebResponderCore</h1><dl><dt>Version</dt><dd>\(version)</dd><dt>Platform</dt><dd>\(platform)</dd></dl></body></html>", codec: UTF8.self)
+        response.setStatus(.OK)
+        response.setHeaders(["Content-Type": ["text/html; charset=UTF-8"]])
+        response.setBody(HTTPBody(string: "<!DOCTYPE html><html><head><title>WebResponderCore</title><style>html { font-family: sans-serif; margin: 1em 25%; background-color: #eee } body { border: 1px solid #ddd; background-color: white; font-size: 1.2em/1.5em } dt { font-weight: bold } dd { margin: 0; padding: 0; margin-bottom: 0.5em; }</style></head><body><h1>WebResponderCore</h1><dl><dt>Version</dt><dd>\(version)</dd><dt>Platform</dt><dd>\(platform)</dd></dl></body></html>", codec: UTF8.self))
         
         response.respond()
     }
