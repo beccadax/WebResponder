@@ -9,14 +9,14 @@
 import XCTest
 import WebResponderCore
 
-class RootTestRequest: HTTPRequestType {
+private class RootTestRequest: HTTPRequestType {
     let path = "/foo"
     let method = HTTPMethod.GET
     let headers = [:] as [String: [String]]
     let body = EmptyHTTPBody()
 }
 
-class LayeredTestRequest: LayeredHTTPRequestType {
+private class LayeredTestRequest: LayeredHTTPRequestType {
     let previousRequest: HTTPRequestType
     
     init(previousRequest: HTTPRequestType) {
