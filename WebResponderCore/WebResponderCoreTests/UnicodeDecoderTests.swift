@@ -26,16 +26,6 @@ func decode32<Seq: SequenceType where Seq.Generator.Element == UInt8>(bytes: Seq
 }
 
 class UnicodeDecoderTests: XCTestCase {
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
     func testUTF8Encoding() {
         AssertElementsEqual(decode8("hello".utf8), "hello".unicodeScalars, "UTF8: ASCII")
         AssertElementsEqual(decode8([0xEF, 0xBB, 0xBF]), "\u{FEFF}".unicodeScalars, "UTF8: Byte order marker")

@@ -26,17 +26,6 @@ func encode32(string: String) -> UnicodeEncoder<UTF32, String.UnicodeScalarView>
 }
 
 class UnicodeEncoderTests: XCTestCase {
-
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
     func testUTF8Encoding() {
         AssertElementsEqual(encode8("hello"), "hello".utf8, "UTF8: ASCII")
         AssertElementsEqual(encode8("\u{FEFF}"), [0xEF, 0xBB, 0xBF], "UTF8: Byte order marker")
