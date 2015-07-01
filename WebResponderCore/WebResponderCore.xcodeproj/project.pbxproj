@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		84761D561B43A56B00C0C528 /* WebResponderTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84761D551B43A56B00C0C528 /* WebResponderTypeTests.swift */; };
+		84761D581B43A91A00C0C528 /* HTTPRequestTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84761D571B43A91A00C0C528 /* HTTPRequestTypeTests.swift */; };
 		847911E51B36A7A300BC5426 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847911D81B36A7A300BC5426 /* HTTPMethod.swift */; };
 		847911E61B36A7A300BC5426 /* HTTPRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847911D91B36A7A300BC5426 /* HTTPRequestType.swift */; };
 		847911E71B36A7A300BC5426 /* HTTPResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847911DA1B36A7A300BC5426 /* HTTPResponseType.swift */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		84761D551B43A56B00C0C528 /* WebResponderTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebResponderTypeTests.swift; sourceTree = "<group>"; };
+		84761D571B43A91A00C0C528 /* HTTPRequestTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequestTypeTests.swift; sourceTree = "<group>"; };
 		847911D61B36A7A300BC5426 /* codes2swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = codes2swift.swift; sourceTree = "<group>"; };
 		847911D71B36A7A300BC5426 /* http-status-codes-1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "http-status-codes-1.csv"; sourceTree = "<group>"; };
 		847911D81B36A7A300BC5426 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				8479120B1B3918FC00BC5426 /* UnicodeDecoderTests.swift */,
 				84EDD0241B3EAE01003FB925 /* HTTPStatusTests.swift */,
 				84761D551B43A56B00C0C528 /* WebResponderTypeTests.swift */,
+				84761D571B43A91A00C0C528 /* HTTPRequestTypeTests.swift */,
 				84B7D44B1B3ED273003A2BCC /* CoreVersionResponderTests.swift */,
 				8479120D1B39467C00BC5426 /* Utility */,
 				849371F01B36A71E008BEB79 /* Info.plist */,
@@ -412,6 +415,7 @@
 				8479120C1B3918FC00BC5426 /* UnicodeDecoderTests.swift in Sources */,
 				84EDD0251B3EAE01003FB925 /* HTTPStatusTests.swift in Sources */,
 				84B7D44C1B3ED273003A2BCC /* CoreVersionResponderTests.swift in Sources */,
+				84761D581B43A91A00C0C528 /* HTTPRequestTypeTests.swift in Sources */,
 				847911F51B36A9B900BC5426 /* SimpleHTTPResponseTests.swift in Sources */,
 				8479120F1B39469000BC5426 /* AssertElementsEqual.swift in Sources */,
 				84B7D4521B3FBE26003A2BCC /* SimpleWebResponderTests.swift in Sources */,
