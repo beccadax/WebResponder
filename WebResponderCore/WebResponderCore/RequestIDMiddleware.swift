@@ -21,7 +21,7 @@ public class RequestIDMiddleware: WebMiddlewareType {
     }
 }
 
-private extension String {
+internal extension String {
     static func hexadecimalUUIDString() -> String {
         var UUIDBytes = Array<UInt8>(count: 16, repeatedValue: 0)
         uuid_generate(&UUIDBytes)
