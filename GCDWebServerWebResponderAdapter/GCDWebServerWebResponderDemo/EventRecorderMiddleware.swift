@@ -13,7 +13,7 @@ class EventRecorderMiddleware: WebMiddlewareType {
     var nextResponder: WebResponderType!
     
     var events: [Event] = []
-    let requiredMiddleware = [ RequestIDMiddleware() ]
+    let requiredMiddleware: [WebMiddlewareType] = [ RequestIDMiddleware() ]
     
     typealias AppendHandler = (EventRecorderMiddleware, Int) -> Void
     var appendHandler: AppendHandler
@@ -34,7 +34,7 @@ class EventRecorderMiddleware: WebMiddlewareType {
     func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
         let method = request.method
         let path = request.path
-        let id = request.requestID ?? ""
+        let id = request.requestID!
         
         addEvent(.Request(requestID: id, method: method, path: path))
         
@@ -52,12 +52,12 @@ class EventRecorderMiddleware: WebMiddlewareType {
         }
         
         func respond() {
-            recorder.addEvent(.Response(requestID: requestID ?? "", status: status))
+            recorder.addEvent(.Response(requestID: requestID!, status: status))
             nextResponse.respond()
         }
         
         func failWithError(error: ErrorType) {
-            recorder.addEvent(.ErrorResponse(requestID: requestID ?? "", error: error))
+            recorder.addEvent(.ErrorResponse(requestID: requestID!, error: error))
             nextResponse.failWithError(error)
         }
     }
