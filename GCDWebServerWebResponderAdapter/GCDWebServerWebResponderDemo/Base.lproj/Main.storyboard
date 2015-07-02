@@ -650,7 +650,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="WebResponder Demo" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -675,8 +675,8 @@
                             <stackView orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="GXj-kR-ZDl">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                                 <edgeInsets key="edgeInsets" left="0.0" right="0.0" top="0.0" bottom="8"/>
-                                <beginningViews>
-                                    <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ut-MV-CjR">
+                                <middleViews>
+                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ut-MV-CjR">
                                         <rect key="frame" x="0.0" y="0.0" width="480" height="237"/>
                                         <clipView key="contentView" id="fIf-6b-6BG">
                                             <rect key="frame" x="1" y="17" width="478" height="219"/>
@@ -745,7 +745,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableHeaderView>
                                     </scrollView>
-                                </beginningViews>
+                                </middleViews>
                                 <endViews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pDt-tM-eJv">
                                         <rect key="frame" x="205" y="0.0" width="70" height="17"/>
@@ -756,6 +756,10 @@
                                         </textFieldCell>
                                     </textField>
                                 </endViews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5Ut-MV-CjR" secondAttribute="trailing" id="EV9-cl-DoU"/>
+                                    <constraint firstItem="5Ut-MV-CjR" firstAttribute="leading" secondItem="GXj-kR-ZDl" secondAttribute="leading" id="ZtY-uL-eDT"/>
+                                </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
