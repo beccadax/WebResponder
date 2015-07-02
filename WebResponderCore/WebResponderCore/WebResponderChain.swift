@@ -23,7 +23,7 @@ public class WebResponderChain: WebRequestable, WebResponderType {
     }
     
     /// Initializes a chain terminated by a given responder.
-    init(finalResponder: WebResponderType) {
+    public init(finalResponder: WebResponderType) {
         nextResponder = finalResponder
         
         for middleware in finalResponder.requiredMiddleware.reverse() {
