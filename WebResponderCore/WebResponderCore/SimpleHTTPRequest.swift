@@ -6,6 +6,7 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
+/// An HTTPRequestType with all fields mutable and no other special logic.
 public struct SimpleHTTPRequest: HTTPRequestType {
     public init() {}
     
