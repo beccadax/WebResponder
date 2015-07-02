@@ -6,6 +6,8 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
+/// A `WebResponderType` which responds with an HTML page giving information 
+/// about WebResponderCore. Useful as a diagnostic tool.
 public class CoreVersionResponder: WebResponderType {
     public init() {}
     

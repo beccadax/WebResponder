@@ -6,6 +6,9 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
+/// A `WebResponderMiddleware` which assigns a hexadecimal UUID to each request.
+/// Responders deeper in the responder chain can access this ID through the 
+/// `requestID` properties on both `HTTPRequestType` and `HTTPResponseType`.
 public class RequestIDMiddleware: WebMiddlewareType {
     public var nextResponder: WebResponderType!
     
@@ -21,6 +24,7 @@ public class RequestIDMiddleware: WebMiddlewareType {
     }
 }
 
+// Internal for testing purposes.
 internal extension String {
     static func hexadecimalUUIDString() -> String {
         var UUIDBytes = Array<UInt8>(count: 16, repeatedValue: 0)
@@ -49,8 +53,8 @@ struct IdentifiedRequest: LayeredHTTPRequestType {
 }
 
 public extension HTTPRequestType {
-    /// A unique ID for the request. Available only if the RequestIDMiddleware is 
-    /// installed.
+    /// A unique ID for the request. Available only if a `RequestIDMiddleware` is 
+    /// installed earlier in the responder chain.
     var requestID: String? {
         return requestOfType(IdentifiedRequest.self)?.requestID
     }
@@ -67,8 +71,8 @@ class IdentifiedResponse: LayeredHTTPResponseType {
 }
 
 public extension HTTPResponseType {
-    /// A unique ID for the response's request. Available only if the 
-    /// RequestIDMiddleware is installed.
+    /// A unique ID for the response's request. Available only if a 
+    /// `RequestIDMiddleware` is installed earlier in the responder chain.
     var requestID: String? {
         return responseOfType(IdentifiedResponse.self)?.requestID
     }
