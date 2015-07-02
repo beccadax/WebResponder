@@ -20,6 +20,7 @@ class ViewController: NSViewController, GCDWebServerDelegate, NSTableViewDataSou
         
         let chain = WebResponderChain(finalResponder: CoreVersionResponder())
         chain.prependMiddleware(recorder)
+        
         webServer.makeFirstResponder(chain)
         
         webServer.delegate = self
