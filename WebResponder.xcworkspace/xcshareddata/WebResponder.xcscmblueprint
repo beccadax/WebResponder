@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D82242F86726DAC9D60B7628B15FE26BE5901D05",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D82242F86726DAC9D60B7628B15FE26BE5901D05" : 0,
+    "F6F96CA34C5878B0A9123C7C37855491A5E599DA" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C3A4A37D-035E-492F-9B47-AF80B13A41C5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D82242F86726DAC9D60B7628B15FE26BE5901D05" : "WebResponder\/",
+    "F6F96CA34C5878B0A9123C7C37855491A5E599DA" : "WebResponder\/GCDWebServerWebResponderAdapter\/GCDWebServer\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "WebResponder",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "WebResponder.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/brentdax\/WebResponder.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D82242F86726DAC9D60B7628B15FE26BE5901D05"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/swisspol\/GCDWebServer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F6F96CA34C5878B0A9123C7C37855491A5E599DA"
+    }
+  ]
+}
