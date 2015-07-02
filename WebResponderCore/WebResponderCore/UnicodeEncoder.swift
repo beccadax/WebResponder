@@ -11,11 +11,18 @@
 /// encoder.
 public struct UnicodeEncoder<UnicodeCodec: UnicodeCodecType, Sequence: SequenceType where UnicodeCodec.CodeUnit: UnsignedIntegerType, Sequence.Generator.Element == UnicodeScalar>: SequenceType, GeneratorType {
     private var estimatedScalars: Int
+    private var unicodeScalarSequence: Sequence
     private var unicodeScalarGenerator: Sequence.Generator
     private var byteBuffer: [UInt8] = []
     
     public init(_ scalars: Sequence, codec: UnicodeCodec.Type) {
-        self.unicodeScalarGenerator = scalars.generate()
+        // String.UnicodeScalarView.Generator may not hold a strong reference to 
+        // the scalar view, and thus the buffer it's reading from. So we have to do 
+        // it instead, even though we don't need a reference to the sequence after 
+        // this. Sigh.
+        unicodeScalarSequence = scalars
+        
+        unicodeScalarGenerator = unicodeScalarSequence.generate()
         estimatedScalars = scalars.underestimateCount()
     }
     
