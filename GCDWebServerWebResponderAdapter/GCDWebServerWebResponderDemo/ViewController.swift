@@ -13,17 +13,7 @@ import GCDWebServers
 
 class ViewController: NSViewController, GCDWebServerDelegate, NSTableViewDataSource {
     let webServer = GCDWebServer()
-    
-    @IBOutlet var linkField: NSTextField!
-    @IBOutlet var tableView: NSTableView!
-    
     lazy var recorder: EventRecorderMiddleware = EventRecorderMiddleware(appendHandler: self.appendedEvent)
-    
-    func appendedEvent(recorder: EventRecorderMiddleware, index: Int) {
-        tableView.beginUpdates()
-        tableView.insertRowsAtIndexes(NSIndexSet(index: index), withAnimation: .EffectFade)
-        tableView.endUpdates()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +31,15 @@ class ViewController: NSViewController, GCDWebServerDelegate, NSTableViewDataSou
         
         linkField.attributedStringValue = NSAttributedString(string: url.absoluteString, attributes: [NSLinkAttributeName: url])
     }
+    
+    func appendedEvent(recorder: EventRecorderMiddleware, index: Int) {
+        tableView.beginUpdates()
+        tableView.insertRowsAtIndexes(NSIndexSet(index: index), withAnimation: .EffectFade)
+        tableView.endUpdates()
+    }
+    
+    @IBOutlet var linkField: NSTextField!
+    @IBOutlet var tableView: NSTableView!
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return recorder.events.count
