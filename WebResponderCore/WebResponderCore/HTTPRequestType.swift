@@ -47,6 +47,8 @@ public protocol HTTPRequestType {
 /// extension methods should account for the possibility that they're being called on 
 /// a request which hasn't passed through the middleware in question, and so 
 /// `requestOfType(_:)` will return `nil`.
+/// 
+/// See `RequestIDMiddleware` for an example of this in action.
 public protocol LayeredHTTPRequestType: HTTPRequestType {
     /// The underlying request being wrapped by this request.
     var previousRequest: HTTPRequestType { get }
