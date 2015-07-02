@@ -11,91 +11,25 @@ import WebResponderCore
 import GCDWebServerWebResponderAdapter
 import GCDWebServers
 
-enum Event {
-    case Request (requestID: String, method: HTTPMethod, path: String)
-    case Response (requestID: String, status: HTTPStatus)
-    case ErrorResponse (requestID: String, error: ErrorType)
-    
-    var typeImage: NSImage {
-        switch self {
-        case .Request:
-            return NSImage(named: NSImageNameGoRightTemplate)!
-        case .Response:
-            return NSImage(named: NSImageNameGoLeftTemplate)!
-        case .ErrorResponse:
-            return NSImage(named: NSImageNameStopProgressFreestandingTemplate)!
-        }
-    }
-    
-    var requestID: String {
-        switch self {
-        case let .Request (requestID, _, _):
-            return requestID
-        case let .Response (requestID, _):
-            return requestID
-        case let .ErrorResponse (requestID, _):
-            return requestID
-        }
-
-    }
-    
-    var detailText: String {
-        switch self {
-        case let .Request (_, method, path):
-            return "\(method.rawValue) \(path)"
-        case let .Response (_, status):
-            return status.description
-        case let .ErrorResponse (_, error):
-            return (error as NSError).description
-        }
-    }
-}
-
 class ViewController: NSViewController, GCDWebServerDelegate, NSTableViewDataSource {
     let webServer = GCDWebServer()
     
     @IBOutlet var linkField: NSTextField!
     @IBOutlet var tableView: NSTableView!
     
-    var events: [Event] = []
+    lazy var recorder: EventRecorderMiddleware = EventRecorderMiddleware(appendHandler: self.appendedEvent)
     
-    func addEvent(event: Event) {
-        dispatch_async(dispatch_get_main_queue()) {
-            let index = self.events.count
-            self.events.append(event)
-            
-            self.tableView.beginUpdates()
-            self.tableView.insertRowsAtIndexes(NSIndexSet(index: index), withAnimation: .EffectGap)
-            self.tableView.endUpdates()
-        }
+    func appendedEvent(recorder: EventRecorderMiddleware, index: Int) {
+        tableView.beginUpdates()
+        tableView.insertRowsAtIndexes(NSIndexSet(index: index), withAnimation: .EffectFade)
+        tableView.endUpdates()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let chain = WebResponderChain(finalResponder: CoreVersionResponder())
-        chain.appendMiddleware(SimpleWebMiddleware(requiredMiddleware: [RequestIDMiddleware()]) { response, request, next in
-            self.addEvent(.Request(requestID: request.requestID!, method: request.method, path: request.path))
-            
-            let wrappedResponse = SimpleHTTPResponse { wrappedResponse, error in
-                if let error = error {
-                    self.addEvent(.ErrorResponse(requestID: response.requestID!, error: error))
-                    response.failWithError(error)
-                }
-                else {
-                    self.addEvent(.Response(requestID: response.requestID!, status: response.status))
-                    
-                    response.setStatus(wrappedResponse.status)
-                    response.setHeaders(wrappedResponse.headers)
-                    response.setBody(wrappedResponse.body)
-                    
-                    response.respond()
-                }
-            }
-            
-            next(request, wrappedResponse)
-        })
-
+        chain.prependMiddleware(recorder)
         webServer.makeFirstResponder(chain)
         
         webServer.delegate = self
@@ -109,11 +43,11 @@ class ViewController: NSViewController, GCDWebServerDelegate, NSTableViewDataSou
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return events.count
+        return recorder.events.count
     }
     
     func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
-        let event = events[row]
+        let event = recorder.events[row]
         
         switch tableColumn?.identifier {
         case "type"?:
