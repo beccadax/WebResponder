@@ -37,11 +37,15 @@ public class WebResponderChain: WebRequestable, WebResponderType {
     }
     
     /// Adds a middleware at the top of the middleware chain.
+    /// 
+    /// - Precondition: `middleware` must not be in a responder chain already.
     public func prependMiddleware(middleware: WebMiddlewareType) {
         insertMiddleware(middleware, after: self)
     }
     
     /// Adds a middleware at the bottom of the middleware chain, right before the final responder.
+    /// 
+    /// - Precondition: `middleware` must not be in a responder chain already.
     public func appendMiddleware(middleware: WebMiddlewareType) {
         insertMiddleware(middleware, before: finalResponder)
     }

@@ -7,6 +7,7 @@
 //
 
 public extension SequenceType where Generator.Element == UnicodeScalar {
+    /// Reads all `UnicodeScalar`s in the sequence into a `String`.
     public mutating func readString() -> String {
         var string = ""
         string.unicodeScalars.reserveCapacity(underestimateCount())
@@ -19,6 +20,10 @@ public extension SequenceType where Generator.Element == UnicodeScalar {
 // Used for understimateCount.
 private let estimationFactor: Float = 4
 
+/// Decodes a sequence of bytes into a sequence of `UnicodeScalar`s using a
+/// `UnicodeCodecType`. The decoding is done lazily as scalars are read from the 
+/// decoder. Decoding errors are represented by generating U+FFFD REPLACEMENT 
+/// CHARACTER.
 public struct UnicodeDecoder<UnicodeCodec: UnicodeCodecType, Sequence: SequenceType where UnicodeCodec.CodeUnit: UnsignedIntegerType, Sequence.Generator.Element == UInt8>: SequenceType, GeneratorType {
     private var codeUnitGenerator: UIntegerGenerator<UnicodeCodec.CodeUnit, Sequence.Generator>
     private var estimate: Int

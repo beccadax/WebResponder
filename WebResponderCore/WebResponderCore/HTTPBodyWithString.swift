@@ -8,6 +8,11 @@
 
 import Foundation
 
+/// Returns an `HTTPBodyType` which generates the bytes of the given `string` 
+/// transcoded to the given `codec`.
+/// 
+/// - Note: The `HTTPBodyType` returned by this function may not perform any 
+///   encoding or decoding when `readUnicode()` or `readString()` is called.
 public func HTTPBody<UnicodeCodec: UnicodeCodecType where UnicodeCodec.CodeUnit: UnsignedIntegerType>(string string: String, codec: UnicodeCodec.Type) -> HTTPBodyType {
     return HTTPBodyWithString(string: string, codec: codec)
 }

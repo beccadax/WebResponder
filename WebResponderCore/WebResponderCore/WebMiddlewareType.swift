@@ -17,6 +17,9 @@ public protocol WebMiddlewareType: WebResponderType, WebRequestable {}
 public extension WebRequestable {
     /// Insert a new middleware just after a given requestable in the chain. Pass 
     /// the chain itself to insert a middleware at the beginning of the chain.
+    /// Returns `true` if `after` was found and `middleware` was inserted after it.
+    /// 
+    /// - Precondition: `middleware` must not be in a chain already.
     func insertMiddleware(middleware: WebMiddlewareType, after: WebRequestable) -> Bool {
         precondition(middleware.nextResponder == nil, "Middleware \(middleware) is already in a chain")
         
@@ -39,7 +42,11 @@ public extension WebRequestable {
     }
     
     /// Insert a new middleware just before a given responder in the chain. Pass 
-    /// the chain's final responder to insert a middleware at the end of the chain.
+    /// the chain's final responder to insert a middleware at the end of the chain. 
+    /// Returns `true` if `before` was found and `middleware` was inserted before it.
+    /// 
+    /// - Precondition: `middleware` must not be in a chain already.
+    /// - Precondition: `before` must not be `self`.
     func insertMiddleware(middleware: WebMiddlewareType, before: WebResponderType) -> Bool {
         precondition(middleware.nextResponder == nil, "Middleware \(middleware) is already in a chain")
         precondition(self !== before, "Cannot call \(self).insertMiddleware(_, before: \(self))")
@@ -56,7 +63,11 @@ public extension WebRequestable {
         }
     }
     
-    /// Remove a middleware from the chain.
+    /// Remove a middleware from the chain. Returns `true` if `middleware` was 
+    /// found in the chain and removed.
+    /// 
+    /// - Precondition: `middleware` must be in a chain already (but not necessarily this chain).
+    /// - Precondition: `middleware` must not be `self`.
     func removeMiddleware(middleware: WebMiddlewareType) -> Bool {
         precondition(middleware.nextResponder != nil, "Middleware \(middleware) is not in a chain")
         precondition(self !== middleware, "Cannot call \(self).removeMiddleware(\(self))")

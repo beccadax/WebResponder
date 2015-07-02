@@ -7,6 +7,8 @@
 //
 
 extension UnsignedIntegerType {
+    /// Constructs an integer of the indicated size from an array of bytes in 
+    /// big-endian order.
     init(bigEndianBytes bytes: [UInt8]) {
         var int: UIntMax = 0
         
@@ -18,6 +20,7 @@ extension UnsignedIntegerType {
         self.init(int)
     }
     
+    /// Returns the bytes of the integer in big-endian order.
     var bigEndianBytes: [UInt8] {
         var bytes: [UInt8] = []
         var bitPattern = self.toUIntMax()

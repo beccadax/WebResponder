@@ -6,6 +6,12 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
+/// Represents the body of an HTTP request or response.
+/// 
+/// An `HTTPBodyType` offers several APIs to read its contents, but you can only 
+/// one of these methods, and you can only call it once. You can check if a 
+/// particular body has already been read with the `read` property. `HTTPBodyType` 
+/// is always a reference type and there is no way to copy one.
 public protocol HTTPBodyType: class {
     var read: Bool { get }
     

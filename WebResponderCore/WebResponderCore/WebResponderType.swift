@@ -8,7 +8,7 @@
 
 /// Protocol for an object that can respond to an HTTP request. If it then passes 
 /// that HTTP request through to another responder, it should conform to 
-/// WebMiddlewareType, which also implies conformance to this type.
+/// `WebMiddlewareType`, which also implies conformance to this type.
 public protocol WebResponderType: class {
     /// Performs the indicated request, responding through the indicated response 
     /// object. Responders are asynchronous, so they may call the response's 

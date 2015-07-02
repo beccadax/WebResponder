@@ -6,6 +6,9 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
+/// Encodes a sequence of `UnicodeScalar`s into a sequence of bytes using a
+/// `UnicodeCodecType`. The encoding is done lazily as bytes are read from the 
+/// encoder.
 public struct UnicodeEncoder<UnicodeCodec: UnicodeCodecType, Sequence: SequenceType where UnicodeCodec.CodeUnit: UnsignedIntegerType, Sequence.Generator.Element == UnicodeScalar>: SequenceType, GeneratorType {
     private var estimatedScalars: Int
     private var unicodeScalarGenerator: Sequence.Generator

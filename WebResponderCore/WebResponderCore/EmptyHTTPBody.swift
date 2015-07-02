@@ -6,6 +6,7 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
+/// Returns an `HTTPBodyType` of zero length.
 public func EmptyHTTPBody() -> HTTPBodyType {
     return EmptyHTTPBodyImplementation()
 }

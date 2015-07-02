@@ -6,12 +6,19 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
+/// Encodes and decodes between ISO-8859-1 (Latin-1) bytes and Swift 
+/// `UnicodeScalar`s. Note that not all `UnicodeScalar`s can be represented in 
+/// Latin-1.
 public struct Latin1: UnicodeCodecType {
+    /// Called when encoding a `UnicodeScalar` which cannot be represented in 
+    /// Latin-1. The default handler simply returns a "?", but more sophisticated
+    /// algorithms can be substituted by replacing this closure.
     public static var unknownCharacterHandler = { (_: UnicodeScalar) -> [UInt8] in Array("?".utf8) }
     
     typealias CodeUnit = UInt8
     public init() {}
     
+    /// Decodes a Latin-1 byte into a `UnicodeScalar`. Latin-1 decoding cannot fail.
     public mutating func decode<G : GeneratorType where G.Element == UInt8>(inout generator: G) -> UnicodeDecodingResult {
         if let scalar = generator.next().map(UnicodeScalar.init) {
             return .Result(scalar)
@@ -21,6 +28,9 @@ public struct Latin1: UnicodeCodecType {
         }
     }
     
+    /// Encodes a `UnicodeScalar` as one or more Latin-1 bytes. May call 
+    /// `Latin1.unknownCharacterHandler` if the character cannot be represented in 
+    /// Latin-1.
     public static func encode<S : SinkType where S.Element == UInt8>(input: UnicodeScalar, inout output: S) {
         switch input.value {
         case 0xFEFF:

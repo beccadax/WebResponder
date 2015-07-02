@@ -6,6 +6,7 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
+/// Returns an `HTTPBodyType` which generates the given array of bytes.
 public func HTTPBody(bytes bytes: [UInt8]) -> HTTPBodyType {
     return HTTPBodyWithBytes(bytes)
 }

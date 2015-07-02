@@ -8,7 +8,7 @@
 
 /// Protocol for an object that can pass HTTP requests through to a responder or 
 /// chain of responders. If it contributes to the response before it passes them 
-/// through, it should conform to WebMiddlewareType, which also conforms to this 
+/// through, it should conform to `WebMiddlewareType`, which also conforms to this 
 /// type.
 public protocol WebRequestable: class {
     /// A reference to the responder that this object should send requests to.
