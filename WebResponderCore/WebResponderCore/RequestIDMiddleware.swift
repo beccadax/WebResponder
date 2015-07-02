@@ -15,7 +15,7 @@ public class RequestIDMiddleware: WebMiddlewareType {
     public init() {}
     
     public func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
-        let ID = String.hexadecimalUUIDString()
+        let ID = request.requestID ?? String.hexadecimalUUIDString()
         
         let newRequest = IdentifiedRequest(previousRequest: request, requestID: ID)
         let newResponse = IdentifiedResponse(nextResponse: response, requestID: ID)

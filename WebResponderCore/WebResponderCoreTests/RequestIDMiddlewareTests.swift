@@ -55,6 +55,22 @@ class RequestIDMiddlewareTests: XCTestCase {
         }.respond(SimpleHTTPResponse { _, _ in }, toRequest: SimpleHTTPRequest())
     }
     
+    func testDoubledMiddleware() {
+        var upstreamRequestID: String?
+        
+        let middleware = SimpleWebMiddleware(requiredMiddleware: [RequestIDMiddleware()]) { response, request, next in
+            upstreamRequestID = request.requestID
+            next(request, response)
+        }
+        let responder = SimpleWebResponder(requiredMiddleware: [middleware, RequestIDMiddleware()]) { response, request in
+            XCTAssertEqual(request.requestID ?? "", upstreamRequestID ?? "", "Two RequestIDMiddlewares at different points in the responder chain don't produce different IDs")
+            return
+        }
+        let chain = WebResponderChain(finalResponder: responder)
+        
+        chain.respond(SimpleHTTPResponse { _, _ in }, toRequest: SimpleHTTPRequest())
+    }
+    
     // This may not be fully covered by the other tests depending on the UUIDs they end up generating.
     func testPadLeft() {
         XCTAssertEqual("".padLeft("0", toLength: 2), "00", "padLeft() works with zero-length string")
