@@ -1,0 +1,3 @@
+[submodule "GCDWebServerWebResponderAdapter/GCDWebServer"]
+	path = GCDWebServerWebResponderAdapter/GCDWebServer
+	url = https://github.com/swisspol/GCDWebServer.git
