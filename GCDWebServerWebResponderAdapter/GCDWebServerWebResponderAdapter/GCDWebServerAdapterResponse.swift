@@ -50,7 +50,7 @@ class GCDWebServerAdapterResponse: HTTPResponseType {
             response.contentLength = 0
         }
         else {
-            let data = NSData(bytes: &bytes, length: bytes.count)
+            let data = NSData(bytesNoCopy: &bytes, length: bytes.count, deallocator: { _, _ in bytes = [] })
             response = GCDWebServerDataResponse(data: data, contentType: "application/octet-stream")
             response.contentLength = UInt(bytes.count)
         }
