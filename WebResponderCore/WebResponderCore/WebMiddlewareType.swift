@@ -8,7 +8,7 @@
 
 /// Protocol for an object which modifies an HTTP request or response before passing
 /// it to another responder. Typically, a middleware might wrap the request and/or 
-/// response objects with custom types, then call `sendRequestToResponder(_:withResponse:)` 
+/// response objects with custom types, then call `sendRequestToNextResponder(_:withResponse:)` 
 /// to pass these wrapped objects to the next responder. However, nothing prevents a 
 /// middleware from diverting a request to a different responder, responding to the 
 /// request itself, or passing the request and response objects through unchanged.

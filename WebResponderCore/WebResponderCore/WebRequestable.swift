@@ -17,8 +17,9 @@ public protocol WebRequestable: class {
 }
 
 public extension WebRequestable {
-    /// Passes the request through to the next responder.
-    func sendRequestToResponder(request: HTTPRequestType, withResponse response: HTTPResponseType) {
+    /// Passes the request through to the next responder. This should usually only 
+    /// be called on `self`.
+    func sendRequestToNextResponder(request: HTTPRequestType, withResponse response: HTTPResponseType) {
         nextResponder.respond(response, toRequest: request)
     }
 }

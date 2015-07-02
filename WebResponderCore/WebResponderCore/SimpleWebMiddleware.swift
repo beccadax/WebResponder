@@ -19,6 +19,6 @@ public final class SimpleWebMiddleware: WebMiddlewareType {
     private var implementation: Implementation
     
     public func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
-        implementation(response, request, sendRequestToResponder)
+        implementation(response, request, sendRequestToNextResponder)
     }
 }

@@ -17,7 +17,7 @@ public class RequestIDMiddleware: WebMiddlewareType {
         let newRequest = IdentifiedRequest(previousRequest: request, requestID: ID)
         let newResponse = IdentifiedResponse(nextResponse: response, requestID: ID)
         
-        sendRequestToResponder(newRequest, withResponse: newResponse)
+        sendRequestToNextResponder(newRequest, withResponse: newResponse)
     }
 }
 

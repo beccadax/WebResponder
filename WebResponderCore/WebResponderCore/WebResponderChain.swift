@@ -33,7 +33,7 @@ public class WebResponderChain: WebRequestable, WebResponderType {
     
     /// Call this to instruct a Web Responder Chain to respond to a particular request.
     public func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
-        sendRequestToResponder(request, withResponse: response)
+        sendRequestToNextResponder(request, withResponse: response)
     }
     
     /// Adds a middleware at the top of the middleware chain.
