@@ -8,7 +8,7 @@
 
 import Cocoa
 import WebResponderCore
-import GCDWebServerWebResponderAdapter
+import WebResponderGCDWebServer
 import GCDWebServers
 
 class ViewController: NSViewController, GCDWebServerDelegate, NSTableViewDataSource {

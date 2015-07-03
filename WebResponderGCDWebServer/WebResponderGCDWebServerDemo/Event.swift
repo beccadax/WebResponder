@@ -1,6 +1,6 @@
 //
 //  Event.swift
-//  GCDWebServerWebResponderAdapter
+//  WebResponderGCDWebServer
 //
 //  Created by Brent Royal-Gordon on 7/2/15.
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.

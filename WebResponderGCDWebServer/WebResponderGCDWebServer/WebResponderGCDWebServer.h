@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-//! Project version number for GCDWebServerWebResponderAdapter.
+//! Project version number for WebResponderGCDWebServer.
 FOUNDATION_EXPORT double WebResponderGCDWebServerVersionNumber;
 
-//! Project version string for GCDWebServerWebResponderAdapter.
+//! Project version string for WebResponderGCDWebServer.
 FOUNDATION_EXPORT const unsigned char WebResponderGCDWebServerVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <WebResponderGCDWebServer/PublicHeader.h>
