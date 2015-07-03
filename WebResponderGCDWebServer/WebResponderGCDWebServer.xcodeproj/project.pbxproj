@@ -18,11 +18,11 @@
 		84BF76051B4544FD00314CEA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF76041B4544FD00314CEA /* Event.swift */; };
 		84BF76071B45453600314CEA /* EventRecorderMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF76061B45453600314CEA /* EventRecorderMiddleware.swift */; };
 		84E086961B4517670089C1B8 /* GCDWebServerWebResponderAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 84E086951B4517670089C1B8 /* GCDWebServerWebResponderAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		84E0869D1B4517670089C1B8 /* GCDWebServerWebResponderAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* GCDWebServerWebResponderAdapter.framework */; };
+		84E0869D1B4517670089C1B8 /* WebResponderGCDWebServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* WebResponderGCDWebServer.framework */; };
 		84E086A21B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E086A11B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift */; };
 		84E086AD1B4517A40089C1B8 /* WebResponderCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086AC1B4517A40089C1B8 /* WebResponderCore.framework */; };
-		84F6E0541B461B590057D685 /* GCDWebServerWebResponderAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* GCDWebServerWebResponderAdapter.framework */; };
-		84F6E0551B461B590057D685 /* GCDWebServerWebResponderAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* GCDWebServerWebResponderAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84F6E0541B461B590057D685 /* WebResponderGCDWebServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* WebResponderGCDWebServer.framework */; };
+		84F6E0551B461B590057D685 /* WebResponderGCDWebServer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* WebResponderGCDWebServer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +84,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				84F6E0551B461B590057D685 /* GCDWebServerWebResponderAdapter.framework in Embed Frameworks */,
+				84F6E0551B461B590057D685 /* WebResponderGCDWebServer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,7 +95,7 @@
 		8492D3781B4519BB00782F92 /* GCDWebServerAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDWebServerAdapter.swift; sourceTree = "<group>"; };
 		8492D37A1B451D4B00782F92 /* GCDWebServerAdapterRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDWebServerAdapterRequest.swift; sourceTree = "<group>"; };
 		8492D37C1B45286800782F92 /* GCDWebServerAdapterResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDWebServerAdapterResponse.swift; sourceTree = "<group>"; };
-		8492D3821B45355300782F92 /* GCDWebServerWebResponderDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCDWebServerWebResponderDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8492D3821B45355300782F92 /* WebResponderGCDWebServerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebResponderGCDWebServerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8492D3841B45355300782F92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8492D3861B45355300782F92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8492D3881B45355300782F92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,10 +103,10 @@
 		8492D38D1B45355300782F92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84BF76041B4544FD00314CEA /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		84BF76061B45453600314CEA /* EventRecorderMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRecorderMiddleware.swift; sourceTree = "<group>"; };
-		84E086921B4517670089C1B8 /* GCDWebServerWebResponderAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GCDWebServerWebResponderAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84E086921B4517670089C1B8 /* WebResponderGCDWebServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebResponderGCDWebServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E086951B4517670089C1B8 /* GCDWebServerWebResponderAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerWebResponderAdapter.h; sourceTree = "<group>"; };
 		84E086971B4517670089C1B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84E0869C1B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GCDWebServerWebResponderAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84E0869C1B4517670089C1B8 /* WebResponderGCDWebServer.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebResponderGCDWebServer.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E086A11B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDWebServerWebResponderAdapterTests.swift; sourceTree = "<group>"; };
 		84E086A31B4517670089C1B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E086AC1B4517A40089C1B8 /* WebResponderCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebResponderCore.framework; path = "../../../../Documents/Code/Derived Data/WebResponder-haavkneycyubeogntbqafcumpdiw/Build/Products/Debug/WebResponderCore.framework"; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84F6E0541B461B590057D685 /* GCDWebServerWebResponderAdapter.framework in Frameworks */,
+				84F6E0541B461B590057D685 /* WebResponderGCDWebServer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84E0869D1B4517670089C1B8 /* GCDWebServerWebResponderAdapter.framework in Frameworks */,
+				84E0869D1B4517670089C1B8 /* WebResponderGCDWebServer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,9 +171,9 @@
 		84E086931B4517670089C1B8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84E086921B4517670089C1B8 /* GCDWebServerWebResponderAdapter.framework */,
-				84E0869C1B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.xctest */,
-				8492D3821B45355300782F92 /* GCDWebServerWebResponderDemo.app */,
+				84E086921B4517670089C1B8 /* WebResponderGCDWebServer.framework */,
+				84E0869C1B4517670089C1B8 /* WebResponderGCDWebServer.xctest */,
+				8492D3821B45355300782F92 /* WebResponderGCDWebServerDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,9 +224,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8492D3811B45355300782F92 /* GCDWebServerWebResponderDemo */ = {
+		8492D3811B45355300782F92 /* WebResponderGCDWebServerDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8492D38E1B45355300782F92 /* Build configuration list for PBXNativeTarget "GCDWebServerWebResponderDemo" */;
+			buildConfigurationList = 8492D38E1B45355300782F92 /* Build configuration list for PBXNativeTarget "WebResponderGCDWebServerDemo" */;
 			buildPhases = (
 				8492D37E1B45355300782F92 /* Sources */,
 				8492D37F1B45355300782F92 /* Frameworks */,
@@ -238,14 +238,14 @@
 			dependencies = (
 				84F6E0571B461B590057D685 /* PBXTargetDependency */,
 			);
-			name = GCDWebServerWebResponderDemo;
+			name = WebResponderGCDWebServerDemo;
 			productName = GCDWebServerWebResponderDemo;
-			productReference = 8492D3821B45355300782F92 /* GCDWebServerWebResponderDemo.app */;
+			productReference = 8492D3821B45355300782F92 /* WebResponderGCDWebServerDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		84E086911B4517670089C1B8 /* GCDWebServerWebResponderAdapter */ = {
+		84E086911B4517670089C1B8 /* WebResponderGCDWebServer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84E086A61B4517670089C1B8 /* Build configuration list for PBXNativeTarget "GCDWebServerWebResponderAdapter" */;
+			buildConfigurationList = 84E086A61B4517670089C1B8 /* Build configuration list for PBXNativeTarget "WebResponderGCDWebServer" */;
 			buildPhases = (
 				84E0868D1B4517670089C1B8 /* Sources */,
 				84E0868E1B4517670089C1B8 /* Frameworks */,
@@ -257,14 +257,14 @@
 			dependencies = (
 				8492D3771B45194F00782F92 /* PBXTargetDependency */,
 			);
-			name = GCDWebServerWebResponderAdapter;
+			name = WebResponderGCDWebServer;
 			productName = GCDWebServerWebResponderAdapter;
-			productReference = 84E086921B4517670089C1B8 /* GCDWebServerWebResponderAdapter.framework */;
+			productReference = 84E086921B4517670089C1B8 /* WebResponderGCDWebServer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		84E0869B1B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests */ = {
+		84E0869B1B4517670089C1B8 /* WebResponderGCDWebServerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84E086A91B4517670089C1B8 /* Build configuration list for PBXNativeTarget "GCDWebServerWebResponderAdapterTests" */;
+			buildConfigurationList = 84E086A91B4517670089C1B8 /* Build configuration list for PBXNativeTarget "WebResponderGCDWebServerTests" */;
 			buildPhases = (
 				84E086981B4517670089C1B8 /* Sources */,
 				84E086991B4517670089C1B8 /* Frameworks */,
@@ -275,9 +275,9 @@
 			dependencies = (
 				84E0869F1B4517670089C1B8 /* PBXTargetDependency */,
 			);
-			name = GCDWebServerWebResponderAdapterTests;
+			name = WebResponderGCDWebServerTests;
 			productName = GCDWebServerWebResponderAdapterTests;
-			productReference = 84E0869C1B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.xctest */;
+			productReference = 84E0869C1B4517670089C1B8 /* WebResponderGCDWebServer.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -301,7 +301,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 84E0868C1B4517670089C1B8 /* Build configuration list for PBXProject "GCDWebServerWebResponderAdapter" */;
+			buildConfigurationList = 84E0868C1B4517670089C1B8 /* Build configuration list for PBXProject "WebResponderGCDWebServer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -320,9 +320,9 @@
 			);
 			projectRoot = "";
 			targets = (
-				84E086911B4517670089C1B8 /* GCDWebServerWebResponderAdapter */,
-				84E0869B1B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests */,
-				8492D3811B45355300782F92 /* GCDWebServerWebResponderDemo */,
+				84E086911B4517670089C1B8 /* WebResponderGCDWebServer */,
+				84E0869B1B4517670089C1B8 /* WebResponderGCDWebServerTests */,
+				8492D3811B45355300782F92 /* WebResponderGCDWebServerDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -424,12 +424,12 @@
 		};
 		84E0869F1B4517670089C1B8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 84E086911B4517670089C1B8 /* GCDWebServerWebResponderAdapter */;
+			target = 84E086911B4517670089C1B8 /* WebResponderGCDWebServer */;
 			targetProxy = 84E0869E1B4517670089C1B8 /* PBXContainerItemProxy */;
 		};
 		84F6E0571B461B590057D685 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 84E086911B4517670089C1B8 /* GCDWebServerWebResponderAdapter */;
+			target = 84E086911B4517670089C1B8 /* WebResponderGCDWebServer */;
 			targetProxy = 84F6E0561B461B590057D685 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -573,7 +573,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderAdapter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WebResponderGCDWebServer;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -594,7 +594,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderAdapter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WebResponderGCDWebServer;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -606,7 +606,7 @@
 				INFOPLIST_FILE = GCDWebServerWebResponderAdapterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderAdapterTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WebResponderGCDWebServer;
 			};
 			name = Debug;
 		};
@@ -617,14 +617,14 @@
 				INFOPLIST_FILE = GCDWebServerWebResponderAdapterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderAdapterTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WebResponderGCDWebServer;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8492D38E1B45355300782F92 /* Build configuration list for PBXNativeTarget "GCDWebServerWebResponderDemo" */ = {
+		8492D38E1B45355300782F92 /* Build configuration list for PBXNativeTarget "WebResponderGCDWebServerDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8492D38F1B45355300782F92 /* Debug */,
@@ -633,7 +633,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84E0868C1B4517670089C1B8 /* Build configuration list for PBXProject "GCDWebServerWebResponderAdapter" */ = {
+		84E0868C1B4517670089C1B8 /* Build configuration list for PBXProject "WebResponderGCDWebServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84E086A41B4517670089C1B8 /* Debug */,
@@ -642,7 +642,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84E086A61B4517670089C1B8 /* Build configuration list for PBXNativeTarget "GCDWebServerWebResponderAdapter" */ = {
+		84E086A61B4517670089C1B8 /* Build configuration list for PBXNativeTarget "WebResponderGCDWebServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84E086A71B4517670089C1B8 /* Debug */,
@@ -651,7 +651,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84E086A91B4517670089C1B8 /* Build configuration list for PBXNativeTarget "GCDWebServerWebResponderAdapterTests" */ = {
+		84E086A91B4517670089C1B8 /* Build configuration list for PBXNativeTarget "WebResponderGCDWebServerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84E086AA1B4517670089C1B8 /* Debug */,

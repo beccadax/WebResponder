@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "84E086911B4517670089C1B8"
-               BuildableName = "GCDWebServerWebResponderAdapter.framework"
-               BlueprintName = "GCDWebServerWebResponderAdapter"
-               ReferencedContainer = "container:GCDWebServerWebResponderAdapter.xcodeproj">
+               BuildableName = "WebResponderGCDWebServer.framework"
+               BlueprintName = "WebResponderGCDWebServer"
+               ReferencedContainer = "container:WebResponderGCDWebServer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "84E0869B1B4517670089C1B8"
-               BuildableName = "GCDWebServerWebResponderAdapterTests.xctest"
-               BlueprintName = "GCDWebServerWebResponderAdapterTests"
-               ReferencedContainer = "container:GCDWebServerWebResponderAdapter.xcodeproj">
+               BuildableName = "WebResponderGCDWebServer.xctest"
+               BlueprintName = "WebResponderGCDWebServerTests"
+               ReferencedContainer = "container:WebResponderGCDWebServer.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84E086911B4517670089C1B8"
-            BuildableName = "GCDWebServerWebResponderAdapter.framework"
-            BlueprintName = "GCDWebServerWebResponderAdapter"
-            ReferencedContainer = "container:GCDWebServerWebResponderAdapter.xcodeproj">
+            BuildableName = "WebResponderGCDWebServer.framework"
+            BlueprintName = "WebResponderGCDWebServer"
+            ReferencedContainer = "container:WebResponderGCDWebServer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -79,9 +79,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84E086911B4517670089C1B8"
-            BuildableName = "GCDWebServerWebResponderAdapter.framework"
-            BlueprintName = "GCDWebServerWebResponderAdapter"
-            ReferencedContainer = "container:GCDWebServerWebResponderAdapter.xcodeproj">
+            BuildableName = "WebResponderGCDWebServer.framework"
+            BlueprintName = "WebResponderGCDWebServer"
+            ReferencedContainer = "container:WebResponderGCDWebServer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -97,9 +97,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84E086911B4517670089C1B8"
-            BuildableName = "GCDWebServerWebResponderAdapter.framework"
-            BlueprintName = "GCDWebServerWebResponderAdapter"
-            ReferencedContainer = "container:GCDWebServerWebResponderAdapter.xcodeproj">
+            BuildableName = "WebResponderGCDWebServer.framework"
+            BlueprintName = "WebResponderGCDWebServer"
+            ReferencedContainer = "container:WebResponderGCDWebServer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
