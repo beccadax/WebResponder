@@ -92,6 +92,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		841BE40C1B468A5400A62F4F /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		8492D3781B4519BB00782F92 /* GCDWebServerAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDWebServerAdapter.swift; sourceTree = "<group>"; };
 		8492D37A1B451D4B00782F92 /* GCDWebServerAdapterRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDWebServerAdapterRequest.swift; sourceTree = "<group>"; };
 		8492D37C1B45286800782F92 /* GCDWebServerAdapterResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDWebServerAdapterResponse.swift; sourceTree = "<group>"; };
@@ -185,6 +186,7 @@
 				8492D3781B4519BB00782F92 /* GCDWebServerAdapter.swift */,
 				8492D37A1B451D4B00782F92 /* GCDWebServerAdapterRequest.swift */,
 				8492D37C1B45286800782F92 /* GCDWebServerAdapterResponse.swift */,
+				841BE40C1B468A5400A62F4F /* module.modulemap */,
 				84E086971B4517670089C1B8 /* Info.plist */,
 			);
 			path = WebResponderGCDWebServer;
@@ -572,6 +574,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/WebResponderGCDWebServer/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "$(SRCROOT)/WebResponderGCDWebServer/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.WebResponderGCDWebServer;
 				PRODUCT_NAME = WebResponderGCDWebServer;
 				SKIP_INSTALL = YES;
@@ -593,6 +596,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/WebResponderGCDWebServer/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "$(SRCROOT)/WebResponderGCDWebServer/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.WebResponderGCDWebServer;
 				PRODUCT_NAME = WebResponderGCDWebServer;
 				SKIP_INSTALL = YES;

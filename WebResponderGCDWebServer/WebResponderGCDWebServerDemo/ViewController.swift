@@ -9,7 +9,6 @@
 import Cocoa
 import WebResponderCore
 import WebResponderGCDWebServer
-import GCDWebServers
 
 class ViewController: NSViewController, GCDWebServerDelegate, NSTableViewDataSource {
     let webServer = GCDWebServer()
