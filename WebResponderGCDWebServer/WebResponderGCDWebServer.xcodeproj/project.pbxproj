@@ -19,7 +19,7 @@
 		84BF76071B45453600314CEA /* EventRecorderMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF76061B45453600314CEA /* EventRecorderMiddleware.swift */; };
 		84E086961B4517670089C1B8 /* WebResponderGCDWebServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 84E086951B4517670089C1B8 /* WebResponderGCDWebServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84E0869D1B4517670089C1B8 /* WebResponderGCDWebServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* WebResponderGCDWebServer.framework */; };
-		84E086A21B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E086A11B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift */; };
+		84E086A21B4517670089C1B8 /* WebResponderGCDWebServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E086A11B4517670089C1B8 /* WebResponderGCDWebServerTests.swift */; };
 		84E086AD1B4517A40089C1B8 /* WebResponderCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086AC1B4517A40089C1B8 /* WebResponderCore.framework */; };
 		84F6E0541B461B590057D685 /* WebResponderGCDWebServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* WebResponderGCDWebServer.framework */; };
 		84F6E0551B461B590057D685 /* WebResponderGCDWebServer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* WebResponderGCDWebServer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -107,7 +107,7 @@
 		84E086951B4517670089C1B8 /* WebResponderGCDWebServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebResponderGCDWebServer.h; sourceTree = "<group>"; };
 		84E086971B4517670089C1B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E0869C1B4517670089C1B8 /* WebResponderGCDWebServer.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebResponderGCDWebServer.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		84E086A11B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDWebServerWebResponderAdapterTests.swift; sourceTree = "<group>"; };
+		84E086A11B4517670089C1B8 /* WebResponderGCDWebServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebResponderGCDWebServerTests.swift; sourceTree = "<group>"; };
 		84E086A31B4517670089C1B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E086AC1B4517A40089C1B8 /* WebResponderCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebResponderCore.framework; path = "../../../../Documents/Code/Derived Data/WebResponder-haavkneycyubeogntbqafcumpdiw/Build/Products/Debug/WebResponderCore.framework"; sourceTree = "<group>"; };
 		84E086AE1B4518E30089C1B8 /* GCDWebServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GCDWebServer.xcodeproj; path = GCDWebServer/GCDWebServer.xcodeproj; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 		84E086A01B4517670089C1B8 /* WebResponderGCDWebServerTests */ = {
 			isa = PBXGroup;
 			children = (
-				84E086A11B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift */,
+				84E086A11B4517670089C1B8 /* WebResponderGCDWebServerTests.swift */,
 				84E086A31B4517670089C1B8 /* Info.plist */,
 			);
 			path = WebResponderGCDWebServerTests;
@@ -410,7 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84E086A21B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift in Sources */,
+				84E086A21B4517670089C1B8 /* WebResponderGCDWebServerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,9 +603,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = GCDWebServerWebResponderAdapterTests/Info.plist;
+				INFOPLIST_FILE = WebResponderGCDWebServerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderAdapterTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.WebResponderGCDWebServerTests;
 				PRODUCT_NAME = WebResponderGCDWebServer;
 			};
 			name = Debug;
@@ -614,9 +614,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = GCDWebServerWebResponderAdapterTests/Info.plist;
+				INFOPLIST_FILE = WebResponderGCDWebServerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderAdapterTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.WebResponderGCDWebServerTests;
 				PRODUCT_NAME = WebResponderGCDWebServer;
 			};
 			name = Release;

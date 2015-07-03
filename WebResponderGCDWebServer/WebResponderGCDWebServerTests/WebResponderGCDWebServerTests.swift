@@ -1,6 +1,6 @@
 //
-//  GCDWebServerWebResponderAdapterTests.swift
-//  GCDWebServerWebResponderAdapterTests
+//  WebResponderGCDWebServerTests.swift
+//  WebResponderGCDWebServerTests
 //
 //  Created by Brent Royal-Gordon on 7/1/15.
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class GCDWebServerWebResponderAdapterTests: XCTestCase {
+class WebResponderGCDWebServerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
