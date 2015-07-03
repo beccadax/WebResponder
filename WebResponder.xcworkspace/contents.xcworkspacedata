@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:GCDWebServerWebResponderAdapter/GCDWebServerWebResponderAdapter.xcodeproj">
+      location = "group:WebResponderGCDWebServer/GCDWebServerWebResponderAdapter.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:WebResponderCore/WebResponderCore.xcodeproj">

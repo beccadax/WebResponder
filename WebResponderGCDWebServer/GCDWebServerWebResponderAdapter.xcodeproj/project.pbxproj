@@ -142,7 +142,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8492D3831B45355300782F92 /* GCDWebServerWebResponderDemo */ = {
+		8492D3831B45355300782F92 /* WebResponderGCDWebServerDemo */ = {
 			isa = PBXGroup;
 			children = (
 				8492D3841B45355300782F92 /* AppDelegate.swift */,
@@ -153,7 +153,7 @@
 				8492D38A1B45355300782F92 /* Main.storyboard */,
 				8492D38D1B45355300782F92 /* Info.plist */,
 			);
-			path = GCDWebServerWebResponderDemo;
+			path = WebResponderGCDWebServerDemo;
 			sourceTree = "<group>";
 		};
 		84E086881B4517670089C1B8 = {
@@ -161,9 +161,9 @@
 			children = (
 				84E086AE1B4518E30089C1B8 /* GCDWebServer.xcodeproj */,
 				84E086AC1B4517A40089C1B8 /* WebResponderCore.framework */,
-				84E086941B4517670089C1B8 /* GCDWebServerWebResponderAdapter */,
-				84E086A01B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests */,
-				8492D3831B45355300782F92 /* GCDWebServerWebResponderDemo */,
+				84E086941B4517670089C1B8 /* WebResponderGCDWebServer */,
+				84E086A01B4517670089C1B8 /* WebResponderGCDWebServerTests */,
+				8492D3831B45355300782F92 /* WebResponderGCDWebServerDemo */,
 				84E086931B4517670089C1B8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -178,7 +178,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		84E086941B4517670089C1B8 /* GCDWebServerWebResponderAdapter */ = {
+		84E086941B4517670089C1B8 /* WebResponderGCDWebServer */ = {
 			isa = PBXGroup;
 			children = (
 				84E086951B4517670089C1B8 /* GCDWebServerWebResponderAdapter.h */,
@@ -187,16 +187,16 @@
 				8492D37C1B45286800782F92 /* GCDWebServerAdapterResponse.swift */,
 				84E086971B4517670089C1B8 /* Info.plist */,
 			);
-			path = GCDWebServerWebResponderAdapter;
+			path = WebResponderGCDWebServer;
 			sourceTree = "<group>";
 		};
-		84E086A01B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests */ = {
+		84E086A01B4517670089C1B8 /* WebResponderGCDWebServerTests */ = {
 			isa = PBXGroup;
 			children = (
 				84E086A11B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift */,
 				84E086A31B4517670089C1B8 /* Info.plist */,
 			);
-			path = GCDWebServerWebResponderAdapterTests;
+			path = WebResponderGCDWebServerTests;
 			sourceTree = "<group>";
 		};
 		84E086AF1B4518E30089C1B8 /* Products */ = {
@@ -453,7 +453,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = GCDWebServerWebResponderDemo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WebResponderGCDWebServerDemo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -467,7 +467,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = GCDWebServerWebResponderDemo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WebResponderGCDWebServerDemo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -569,7 +569,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = GCDWebServerWebResponderAdapter/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WebResponderGCDWebServer/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderAdapter;
@@ -590,7 +590,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = GCDWebServerWebResponderAdapter/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WebResponderGCDWebServer/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderAdapter;
