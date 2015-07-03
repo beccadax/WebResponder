@@ -37,7 +37,7 @@ struct GCDWebServerAdapterRequest: HTTPRequestType {
     }
     
     var path: String {
-        return underlyingRequest.path
+        return underlyingRequest.URL.relativeString!
     }
     
     var headers: [String: [String]] {
