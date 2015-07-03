@@ -11,7 +11,20 @@ import WebResponderCore
 import GCDWebServers
 
 struct GCDWebServerAdapterRequest: HTTPRequestType {
-    typealias UnderlyingRequest = GCDWebServerDataRequest
+    class UnderlyingRequest: GCDWebServerDataRequest {
+        var webResponderMethod: HTTPMethod
+        
+        override init!(method: String!, url: NSURL!, headers: [NSObject : AnyObject]!, path: String!, query: [NSObject : AnyObject]!) {
+            guard let webResponderMethod = HTTPMethod(rawValue: method) else {
+                self.webResponderMethod = HTTPMethod(unregistered: "uninitialized")
+                super.init(method: method, url: url, headers: headers, path: path, query: query)
+                return nil
+            }
+            
+            self.webResponderMethod = webResponderMethod
+            super.init(method: method, url: url, headers: headers, path: path, query: query)
+        }
+    }
     
     let underlyingRequest: UnderlyingRequest
     
@@ -20,7 +33,7 @@ struct GCDWebServerAdapterRequest: HTTPRequestType {
     }
     
     var method: HTTPMethod {
-        return HTTPMethod(rawValue: underlyingRequest.method)!
+        return underlyingRequest.webResponderMethod
     }
     
     var path: String {
