@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		846056241B464B85006EA3A7 /* HTTPParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846056231B464B85006EA3A7 /* HTTPParsing.swift */; };
+		846056261B467750006EA3A7 /* HTTPMethodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846056251B467750006EA3A7 /* HTTPMethodTests.swift */; };
 		84761D561B43A56B00C0C528 /* WebResponderTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84761D551B43A56B00C0C528 /* WebResponderTypeTests.swift */; };
 		84761D581B43A91A00C0C528 /* HTTPRequestTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84761D571B43A91A00C0C528 /* HTTPRequestTypeTests.swift */; };
 		847911E51B36A7A300BC5426 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847911D81B36A7A300BC5426 /* HTTPMethod.swift */; };
@@ -59,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		846056231B464B85006EA3A7 /* HTTPParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPParsing.swift; sourceTree = "<group>"; };
+		846056251B467750006EA3A7 /* HTTPMethodTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethodTests.swift; sourceTree = "<group>"; };
 		84761D551B43A56B00C0C528 /* WebResponderTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebResponderTypeTests.swift; sourceTree = "<group>"; };
 		84761D571B43A91A00C0C528 /* HTTPRequestTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequestTypeTests.swift; sourceTree = "<group>"; };
 		847911D61B36A7A300BC5426 /* codes2swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = codes2swift.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 				847911D81B36A7A300BC5426 /* HTTPMethod.swift */,
 				847911DB1B36A7A300BC5426 /* HTTPStatus.swift */,
 				847911F61B36CFF300BC5426 /* Generated Status Codes */,
+				846056231B464B85006EA3A7 /* HTTPParsing.swift */,
 			);
 			name = "Requests and Responses";
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				847912071B37BF2600BC5426 /* HTTPBodyTests.swift */,
 				847912091B38D9B400BC5426 /* UnicodeEncoderTests.swift */,
 				8479120B1B3918FC00BC5426 /* UnicodeDecoderTests.swift */,
+				846056251B467750006EA3A7 /* HTTPMethodTests.swift */,
 				84EDD0241B3EAE01003FB925 /* HTTPStatusTests.swift */,
 				84761D551B43A56B00C0C528 /* WebResponderTypeTests.swift */,
 				84761D571B43A91A00C0C528 /* HTTPRequestTypeTests.swift */,
@@ -391,6 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846056241B464B85006EA3A7 /* HTTPParsing.swift in Sources */,
 				847912151B3AD37900BC5426 /* Latin1.swift in Sources */,
 				847911E51B36A7A300BC5426 /* HTTPMethod.swift in Sources */,
 				847911FE1B3757E700BC5426 /* EmptyHTTPBody.swift in Sources */,
@@ -427,6 +434,7 @@
 				84B7D44C1B3ED273003A2BCC /* CoreVersionResponderTests.swift in Sources */,
 				84761D581B43A91A00C0C528 /* HTTPRequestTypeTests.swift in Sources */,
 				84E086871B44B2490089C1B8 /* WebResponderChainTests.swift in Sources */,
+				846056261B467750006EA3A7 /* HTTPMethodTests.swift in Sources */,
 				847911F51B36A9B900BC5426 /* SimpleHTTPResponseTests.swift in Sources */,
 				8479120F1B39469000BC5426 /* AssertElementsEqual.swift in Sources */,
 				84B7D4521B3FBE26003A2BCC /* SimpleWebResponderTests.swift in Sources */,
