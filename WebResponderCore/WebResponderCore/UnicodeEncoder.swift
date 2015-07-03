@@ -16,10 +16,11 @@ public struct UnicodeEncoder<UnicodeCodec: UnicodeCodecType, Sequence: SequenceT
     private var byteBuffer: [UInt8] = []
     
     public init(_ scalars: Sequence, codec: UnicodeCodec.Type) {
-        // String.UnicodeScalarView.Generator may not hold a strong reference to 
-        // the scalar view, and thus the buffer it's reading from. So we have to do 
-        // it instead, even though we don't need a reference to the sequence after 
-        // this. Sigh.
+        // Workaround: In Swift 2.0b2, String.UnicodeScalarView.Generator may not 
+        // hold a strong reference to the buffer it's reading from, so we keep a 
+        // strong reference to the Sequence it shares a buffer with. This is 
+        // unnecessary but harmless for other Sequences.
+        // #21657933 https://twitter.com/jckarter/status/616768905457971200
         unicodeScalarSequence = scalars
         
         unicodeScalarGenerator = unicodeScalarSequence.generate()
