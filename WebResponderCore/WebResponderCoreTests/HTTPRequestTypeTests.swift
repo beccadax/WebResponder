@@ -10,7 +10,7 @@ import XCTest
 import WebResponderCore
 
 private class RootTestRequest: HTTPRequestType {
-    let path = "/foo"
+    let target = "/foo"
     let method = HTTPMethod.GET
     let headers = [:] as [String: [String]]
     let body = EmptyHTTPBody()
@@ -45,7 +45,7 @@ class HTTPRequestTypeTests: XCTestCase {
         let rootTestRequest = RootTestRequest()
         let layeredTestRequest = LayeredTestRequest(previousRequest: rootTestRequest)
         
-        XCTAssertEqual(layeredTestRequest.path, rootTestRequest.path, "Layered request passes through path by default")
+        XCTAssertEqual(layeredTestRequest.target, rootTestRequest.target, "Layered request passes through target by default")
         XCTAssertEqual(layeredTestRequest.method, rootTestRequest.method, "Layered request passes through method by default")
         XCTAssert(layeredTestRequest.body === rootTestRequest.body, "Layered request passes through body by default")
         XCTAssert(layeredTestRequest.headers.isEmpty, "Layered request pases through headers by default")

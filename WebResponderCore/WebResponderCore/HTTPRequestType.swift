@@ -15,10 +15,8 @@
 /// to `LayeredHTTPRequestType`, which has been extended with logic to make this 
 /// easy.
 public protocol HTTPRequestType {
-    /// The path the request was sent to.
-    /// 
-    /// - Note: This may be replaced by a URL property in a future version.
-    var path: String { get }
+    /// The target the request was sent to. This is usually a path and possibly a query string.
+    var target: String { get }
     
     /// The method used when sending the request.
     var method: HTTPMethod { get }
@@ -61,8 +59,8 @@ public extension HTTPRequestType {
 }
 
 public extension LayeredHTTPRequestType {
-    var path: String {
-        return previousRequest.path
+    var target: String {
+        return previousRequest.target
     }
     var method: HTTPMethod {
         return previousRequest.method

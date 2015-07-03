@@ -10,7 +10,7 @@ import AppKit
 import WebResponderCore
 
 enum Event {
-    case Request (requestID: String, method: HTTPMethod, path: String)
+    case Request (requestID: String, method: HTTPMethod, target: String)
     case Response (requestID: String, status: HTTPStatus)
     case ErrorResponse (requestID: String, error: ErrorType)
     
@@ -39,8 +39,8 @@ enum Event {
     
     var detailText: String {
         switch self {
-        case let .Request (_, method, path):
-            return "\(method.rawValue) \(path)"
+        case let .Request (_, method, target):
+            return "\(method.rawValue) \(target)"
         case let .Response (_, status):
             return status.description
         case let .ErrorResponse (_, error):

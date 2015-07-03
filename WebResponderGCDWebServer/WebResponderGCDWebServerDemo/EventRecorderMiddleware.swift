@@ -33,10 +33,10 @@ class EventRecorderMiddleware: WebMiddlewareType {
     
     func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
         let method = request.method
-        let path = request.path
+        let target = request.target
         let id = request.requestID!
         
-        addEvent(.Request(requestID: id, method: method, path: path))
+        addEvent(.Request(requestID: id, method: method, target: target))
         
         let wrappedResponse = Response(nextResponse: response, recorder: self)
         sendRequestToNextResponder(request, withResponse: wrappedResponse)
