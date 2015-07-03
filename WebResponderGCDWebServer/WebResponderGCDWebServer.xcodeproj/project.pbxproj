@@ -17,7 +17,7 @@
 		8492D38C1B45355300782F92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8492D38A1B45355300782F92 /* Main.storyboard */; };
 		84BF76051B4544FD00314CEA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF76041B4544FD00314CEA /* Event.swift */; };
 		84BF76071B45453600314CEA /* EventRecorderMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF76061B45453600314CEA /* EventRecorderMiddleware.swift */; };
-		84E086961B4517670089C1B8 /* GCDWebServerWebResponderAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 84E086951B4517670089C1B8 /* GCDWebServerWebResponderAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84E086961B4517670089C1B8 /* WebResponderGCDWebServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 84E086951B4517670089C1B8 /* WebResponderGCDWebServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84E0869D1B4517670089C1B8 /* WebResponderGCDWebServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* WebResponderGCDWebServer.framework */; };
 		84E086A21B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E086A11B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift */; };
 		84E086AD1B4517A40089C1B8 /* WebResponderCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086AC1B4517A40089C1B8 /* WebResponderCore.framework */; };
@@ -104,7 +104,7 @@
 		84BF76041B4544FD00314CEA /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		84BF76061B45453600314CEA /* EventRecorderMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRecorderMiddleware.swift; sourceTree = "<group>"; };
 		84E086921B4517670089C1B8 /* WebResponderGCDWebServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebResponderGCDWebServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84E086951B4517670089C1B8 /* GCDWebServerWebResponderAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerWebResponderAdapter.h; sourceTree = "<group>"; };
+		84E086951B4517670089C1B8 /* WebResponderGCDWebServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebResponderGCDWebServer.h; sourceTree = "<group>"; };
 		84E086971B4517670089C1B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E0869C1B4517670089C1B8 /* WebResponderGCDWebServer.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebResponderGCDWebServer.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E086A11B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDWebServerWebResponderAdapterTests.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 		84E086941B4517670089C1B8 /* WebResponderGCDWebServer */ = {
 			isa = PBXGroup;
 			children = (
-				84E086951B4517670089C1B8 /* GCDWebServerWebResponderAdapter.h */,
+				84E086951B4517670089C1B8 /* WebResponderGCDWebServer.h */,
 				8492D3781B4519BB00782F92 /* GCDWebServerAdapter.swift */,
 				8492D37A1B451D4B00782F92 /* GCDWebServerAdapterRequest.swift */,
 				8492D37C1B45286800782F92 /* GCDWebServerAdapterResponse.swift */,
@@ -217,7 +217,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84E086961B4517670089C1B8 /* GCDWebServerWebResponderAdapter.h in Headers */,
+				84E086961B4517670089C1B8 /* WebResponderGCDWebServer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,7 +572,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/WebResponderGCDWebServer/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderAdapter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.WebResponderGCDWebServer;
 				PRODUCT_NAME = WebResponderGCDWebServer;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -593,7 +593,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/WebResponderGCDWebServer/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderAdapter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.WebResponderGCDWebServer;
 				PRODUCT_NAME = WebResponderGCDWebServer;
 				SKIP_INSTALL = YES;
 			};
