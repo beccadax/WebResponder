@@ -21,6 +21,8 @@
 		84E0869D1B4517670089C1B8 /* GCDWebServerWebResponderAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* GCDWebServerWebResponderAdapter.framework */; };
 		84E086A21B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E086A11B4517670089C1B8 /* GCDWebServerWebResponderAdapterTests.swift */; };
 		84E086AD1B4517A40089C1B8 /* WebResponderCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086AC1B4517A40089C1B8 /* WebResponderCore.framework */; };
+		84F6E0541B461B590057D685 /* GCDWebServerWebResponderAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* GCDWebServerWebResponderAdapter.framework */; };
+		84F6E0551B461B590057D685 /* GCDWebServerWebResponderAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84E086921B4517670089C1B8 /* GCDWebServerWebResponderAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +68,28 @@
 			remoteGlobalIDString = CEE28CEF1AE0051F00F4023C;
 			remoteInfo = "GCDWebServers (iOS)";
 		};
+		84F6E0561B461B590057D685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84E086891B4517670089C1B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84E086911B4517670089C1B8;
+			remoteInfo = GCDWebServerWebResponderAdapter;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		84F6E05C1B461B590057D685 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				84F6E0551B461B590057D685 /* GCDWebServerWebResponderAdapter.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8492D3781B4519BB00782F92 /* GCDWebServerAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDWebServerAdapter.swift; sourceTree = "<group>"; };
@@ -95,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F6E0541B461B590057D685 /* GCDWebServerWebResponderAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,10 +231,12 @@
 				8492D37E1B45355300782F92 /* Sources */,
 				8492D37F1B45355300782F92 /* Frameworks */,
 				8492D3801B45355300782F92 /* Resources */,
+				84F6E05C1B461B590057D685 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				84F6E0571B461B590057D685 /* PBXTargetDependency */,
 			);
 			name = GCDWebServerWebResponderDemo;
 			productName = GCDWebServerWebResponderDemo;
@@ -401,6 +427,11 @@
 			target = 84E086911B4517670089C1B8 /* GCDWebServerWebResponderAdapter */;
 			targetProxy = 84E0869E1B4517670089C1B8 /* PBXContainerItemProxy */;
 		};
+		84F6E0571B461B590057D685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84E086911B4517670089C1B8 /* GCDWebServerWebResponderAdapter */;
+			targetProxy = 84F6E0561B461B590057D685 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -421,6 +452,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = GCDWebServerWebResponderDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderDemo;
@@ -434,6 +466,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = GCDWebServerWebResponderDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groundbreakingsoftware.cocoa.GCDWebServerWebResponderDemo;
@@ -529,6 +562,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -549,6 +583,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

@@ -20,6 +20,20 @@
                ReferencedContainer = "container:GCDWebServerWebResponderAdapter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "849371DE1B36A71E008BEB79"
+               BuildableName = "WebResponderCore.framework"
+               BlueprintName = "WebResponderCore"
+               ReferencedContainer = "container:../WebResponderCore/WebResponderCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
