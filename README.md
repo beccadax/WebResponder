@@ -41,7 +41,7 @@ Er, not much yet. This repository contains two frameworks:
 1. `WebResponderCore`, which contains the core types, as well as a 
     `RequestIDMiddleware` (which generates a unique UUID for each request it 
     processes) and `CoreVersionResponder` (which generates an HTML page 
-    identifying the version of WebResponder that's running). These are largely for  
+    identifying the version of WebResponder that's running). These are largely for 
     demoing and sample code, although `RequestIDMiddleware` is a genuinely useful 
     middleware.
 2. `WebResponderGCDWebServer` adapts the popular [GCDWebServer](https://github.com/swisspol/GCDWebServer)
