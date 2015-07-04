@@ -12,11 +12,13 @@ public class CoreVersionResponder: WebResponderType {
     public init() {}
     
     public func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
-        var unameResult = utsname()
-        uname(&unameResult)
-        let platform = withUnsafePointer(&unameResult.version) { tuplePointer in
-            String.fromCString(UnsafePointer<Int8>(tuplePointer))!
-        } 
+        let platform: String
+        do {
+            platform = try uname().version
+        }
+        catch let error as NSError {
+            platform = "Error retrieving platform (\(error.localizedDescription))"
+        }
 
         let version = WebResponderCoreVersionNumber
         
@@ -31,4 +33,20 @@ public class CoreVersionResponder: WebResponderType {
 private func aggressivelyEscapeHTML(string: String) -> String {
     // Let's not try to figure out which characters are safe; just escape everything.
     return lazy(string.unicodeScalars).map { $0.value }.map { "&#\($0);" }.reduce("", combine: +)
+}
+
+private func uname() throws -> (sysname: String, nodename: String, release: String, version: String, machine: String) {
+    func t2s<T>(var tuple: T) -> String {
+        return withUnsafePointer(&tuple) { tuplePointer in
+            String.fromCString(UnsafePointer<Int8>(tuplePointer))!
+        }
+    }
+    
+    var unameResult = utsname()
+    if uname(&unameResult) == 0 {
+        return (t2s(unameResult.sysname), t2s(unameResult.nodename), t2s(unameResult.release), t2s(unameResult.release), t2s(unameResult.machine))
+    }
+    else {
+        throw NSError(domain: NSPOSIXErrorDomain, code: Int(errno), userInfo: [:])
+    }
 }
