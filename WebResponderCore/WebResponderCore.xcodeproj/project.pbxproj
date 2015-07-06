@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84047C4A1B4A10CE008BD4FB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 84047C491B4A10CE008BD4FB /* README.md */; };
 		846056241B464B85006EA3A7 /* HTTPParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846056231B464B85006EA3A7 /* HTTPParsing.swift */; };
 		846056261B467750006EA3A7 /* HTTPMethodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846056251B467750006EA3A7 /* HTTPMethodTests.swift */; };
 		84761D561B43A56B00C0C528 /* WebResponderTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84761D551B43A56B00C0C528 /* WebResponderTypeTests.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84047C491B4A10CE008BD4FB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		846056231B464B85006EA3A7 /* HTTPParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPParsing.swift; sourceTree = "<group>"; };
 		846056251B467750006EA3A7 /* HTTPMethodTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethodTests.swift; sourceTree = "<group>"; };
 		84761D551B43A56B00C0C528 /* WebResponderTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebResponderTypeTests.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		849371D51B36A71E008BEB79 = {
 			isa = PBXGroup;
 			children = (
+				84047C491B4A10CE008BD4FB /* README.md */,
 				849371E11B36A71E008BEB79 /* WebResponderCore */,
 				849371ED1B36A71E008BEB79 /* WebResponderCoreTests */,
 				849371E01B36A71E008BEB79 /* Products */,
@@ -409,6 +412,7 @@
 				847911F81B36D02100BC5426 /* HTTPBodyType.swift in Sources */,
 				847912061B3785C000BC5426 /* UnsignedIntegerBytes.swift in Sources */,
 				847911E91B36A7A300BC5426 /* HTTPStatusGenerated.swift in Sources */,
+				84047C4A1B4A10CE008BD4FB /* README.md in Sources */,
 				847912041B37814C00BC5426 /* UnicodeEncoder.swift in Sources */,
 				847911EA1B36A7A300BC5426 /* SimpleHTTPRequest.swift in Sources */,
 				847911ED1B36A7A300BC5426 /* WebRequestable.swift in Sources */,
