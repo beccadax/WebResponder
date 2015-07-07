@@ -13,7 +13,9 @@ WebResponderCore contains the core types for WebResponder:
 * `HTTPBodyType`: Contains the contents of a request's or response's body. Each 
   `HTTPBodyType` can be read only once, and can be read lazily.
 * `WebResponderType`: The fundamental type for a responder, an object that 
-  participates in the handling of requests.
+   participates in the handling of requests. `WebResponderType` is based on 
+   two other protocols: `WebResponderChainable` and 
+   `WebResponderRespondable`.
 * `WebRequestable`, `WebMiddlewareType`, and `WebResponderChain`: Types for 
   forming chains of middleware providing services to a final responder.
 * `SimpleHTTPRequest`, `SimpleHTTPResponse`, `SimpleWebResponder`, and 
