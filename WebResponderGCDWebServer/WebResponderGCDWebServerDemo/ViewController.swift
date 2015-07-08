@@ -11,16 +11,17 @@ import WebResponderCore
 import WebResponderGCDWebServer
 
 class ViewController: NSViewController, GCDWebServerDelegate, NSTableViewDataSource {
-    let webServer = GCDWebServer()
+    let webServer = WebResponderGCDWebServer()
     lazy var recorder: EventRecorderMiddleware = EventRecorderMiddleware(appendHandler: self.appendedEvent)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let chain = WebResponderChain(finalResponder: CoreVersionResponder())
-        chain.prependMiddleware(recorder)
+        recorder.insertNextResponder(CoreVersionResponder().withHelperResponders())
         
-        webServer.makeFirstResponder(chain)
+        webServer.insertNextResponder(
+            recorder.withHelperResponders()
+        )
         
         webServer.delegate = self
         webServer.start()

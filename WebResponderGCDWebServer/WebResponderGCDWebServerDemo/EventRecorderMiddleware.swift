@@ -9,11 +9,13 @@
 import Foundation
 import WebResponderCore
 
-class EventRecorderMiddleware: WebMiddlewareType {
-    var nextResponder: WebResponderType!
+class EventRecorderMiddleware: WebResponderType {
+    lazy var nextResponder: WebResponderRespondable! = Trailer(recorder: self)
     
     var events: [Event] = []
-    let requiredMiddleware: [WebMiddlewareType] = [ RequestIDMiddleware() ]
+    func helperResponders() -> [WebResponderType] {
+        return [ RequestIDMiddleware() ]
+    }
     
     typealias AppendHandler = (EventRecorderMiddleware, Int) -> Void
     var appendHandler: AppendHandler
@@ -38,27 +40,25 @@ class EventRecorderMiddleware: WebMiddlewareType {
         
         addEvent(.Request(requestID: id, method: method, target: target))
         
-        let wrappedResponse = Response(nextResponse: response, recorder: self)
-        sendRequestToNextResponder(request, withResponse: wrappedResponse)
+        nextResponder.respond(response, toRequest: request)
     }
     
-    class Response: LayeredHTTPResponseType {
-        var nextResponse: HTTPResponseType
+    class Trailer: WebResponderType {
+        var nextResponder: WebResponderRespondable!
         let recorder: EventRecorderMiddleware
         
-        init(nextResponse: HTTPResponseType, recorder: EventRecorderMiddleware) {
-            self.nextResponse = nextResponse
+        init(recorder: EventRecorderMiddleware) {
             self.recorder = recorder
         }
         
-        func respond() {
-            recorder.addEvent(.Response(requestID: requestID!, status: status))
-            nextResponse.respond()
+        func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
+            recorder.addEvent(.Response(requestID: request.requestID!, status: response.status))
+            nextResponder.respond(response, toRequest: request)
         }
         
-        func failWithError(error: ErrorType) {
-            recorder.addEvent(.ErrorResponse(requestID: requestID!, error: error))
-            nextResponse.failWithError(error)
+        func respond(response: HTTPResponseType, withError error: ErrorType, toRequest request: HTTPRequestType) {
+            recorder.addEvent(.ErrorResponse(requestID: request.requestID!, error: error))
+            nextResponder.respond(response, withError: error, toRequest: request)
         }
     }
 }
