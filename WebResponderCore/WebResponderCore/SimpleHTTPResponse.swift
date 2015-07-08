@@ -6,31 +6,14 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
-/// An HTTP response with no special logic. A completion closure is called when the
-/// responder calls `respond()` or `failWithError(_:)`.
+/// An HTTP response with no special logic.
 public class SimpleHTTPResponse: HTTPResponseType {
+    public init() {}
+    
     public var status: HTTPStatus = .OK
     public var headers: [String: [String]] = [:]
     public var body: HTTPBodyType = EmptyHTTPBody()
-    
-    /// The completion block is called when the responder calls either `respond()` 
-    /// or `failWithError(_:)`. Its first parameter is a reference to `self`; the 
-    /// second is the error passed to `failWithError`, or `nil` if `respond()` was 
-    /// called.
-    public var completion: (SimpleHTTPResponse, ErrorType?) -> Void
-    
-    public init(completion: (SimpleHTTPResponse, ErrorType?) -> Void) {
-        self.completion = completion
-    }
-    
-    public func respond() {
-        completion(self, nil)
-    }
-    
-    public func failWithError(error: ErrorType) {
-        completion(self, error)
-    }
-    
+        
     // Workarounds for #21584801
     public func setStatus(newValue: HTTPStatus) {
         status = newValue

@@ -12,17 +12,24 @@ public final class SimpleWebResponder: WebResponderType {
     /// An `Implementation` is called with the `response` and `request`. Like any 
     /// responder, it should arrange to call either `respond()` or `failWithError(_:)`
     /// on the `response`.
-    public typealias Implementation = (HTTPResponseType, HTTPRequestType) -> Void
+    public typealias Implementation = (HTTPResponseType, HTTPRequestType, WebResponderRespondable) -> Void
     
-    public init(requiredMiddleware: [WebMiddlewareType] = [], implementation: Implementation) {
-        self.requiredMiddleware = requiredMiddleware
+    public init(helperResponders: [WebResponderType] = [], implementation: Implementation) {
+        _helperResponders = helperResponders
         self.implementation = implementation
     }
     
     private let implementation: Implementation
-    public let requiredMiddleware: [WebMiddlewareType]
+    private var _helperResponders: [WebResponderType]
+    public var nextResponder: WebResponderRespondable!
+    
+    public func helperResponders() -> [WebResponderType] {
+        let array = _helperResponders
+        _helperResponders = []
+        return array
+    }
     
     public func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
-        implementation(response, request)
+        implementation(response, request, nextResponder)
     }
 }

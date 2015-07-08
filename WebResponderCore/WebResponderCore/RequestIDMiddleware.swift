@@ -6,21 +6,25 @@
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
-/// A `WebResponderMiddleware` which assigns a hexadecimal UUID to each request.
+/// A `WebResponderType` which assigns a hexadecimal UUID to each request.
 /// Responders deeper in the responder chain can access this ID through the 
-/// `requestID` properties on both `HTTPRequestType` and `HTTPResponseType`.
-public class RequestIDMiddleware: WebMiddlewareType {
-    public var nextResponder: WebResponderType!
+/// `requestID` property on `HTTPRequestType`.
+public class RequestIDMiddleware: WebResponderType {
+    public var nextResponder: WebResponderRespondable!
     
     public init() {}
     
-    public func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
+    private func wrapRequest(request: HTTPRequestType) -> HTTPRequestType {
         let ID = request.requestID ?? String.hexadecimalUUIDString()
-        
-        let newRequest = IdentifiedRequest(previousRequest: request, requestID: ID)
-        let newResponse = IdentifiedResponse(nextResponse: response, requestID: ID)
-        
-        sendRequestToNextResponder(newRequest, withResponse: newResponse)
+        return IdentifiedRequest(previousRequest: request, requestID: ID)
+    }
+    
+    public func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
+        nextResponder.respond(response, toRequest: wrapRequest(request))
+    }
+    
+    public func respond(response: HTTPResponseType, withError error: ErrorType, toRequest request: HTTPRequestType) {
+        nextResponder.respond(response, withError: error, toRequest: wrapRequest(request))
     }
 }
 
