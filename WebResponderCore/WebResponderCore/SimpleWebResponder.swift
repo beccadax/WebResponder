@@ -14,9 +14,13 @@ public final class SimpleWebResponder: WebResponderType {
     /// on the `response`.
     public typealias Implementation = (HTTPResponseType, HTTPRequestType, WebResponderRespondable) -> Void
     
-    public init(helperResponders: [WebResponderType] = [], implementation: Implementation) {
+    public init(helperResponders: [WebResponderType], implementation: Implementation) {
         _helperResponders = helperResponders
         self.implementation = implementation
+    }
+    
+    convenience public init(implementation: Implementation) {
+        self.init(helperResponders: [], implementation: implementation)
     }
     
     private let implementation: Implementation
