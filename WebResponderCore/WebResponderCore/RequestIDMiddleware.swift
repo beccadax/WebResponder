@@ -63,21 +63,3 @@ public extension HTTPRequestType {
         return requestOfType(IdentifiedRequest.self)?.requestID
     }
 }
-
-class IdentifiedResponse: LayeredHTTPResponseType {
-    let nextResponse: HTTPResponseType
-    let requestID: String?
-    
-    init(nextResponse: HTTPResponseType, requestID: String) {
-        self.nextResponse = nextResponse
-        self.requestID = requestID
-    }
-}
-
-public extension HTTPResponseType {
-    /// A unique ID for the response's request. Available only if a 
-    /// `RequestIDMiddleware` is installed earlier in the responder chain.
-    var requestID: String? {
-        return responseOfType(IdentifiedResponse.self)?.requestID
-    }
-}
