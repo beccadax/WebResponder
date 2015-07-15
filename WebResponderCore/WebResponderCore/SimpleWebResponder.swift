@@ -12,7 +12,7 @@ public final class SimpleWebResponder: WebResponderType {
     /// An `Implementation` is called with the `response` and `request`. Like any 
     /// responder, it should arrange to call either `respond()` or `failWithError(_:)`
     /// on the `response`.
-    public typealias Implementation = (HTTPResponseType, ErrorType?, HTTPRequestType, WebResponderRespondable) -> Void
+    public typealias Implementation = (HTTPResponseType, ErrorType?, HTTPRequestType, WebResponderRespondable!) -> Void
     
     public init(helperResponders: [WebResponderType], implementation: Implementation) {
         _helperResponders = helperResponders
