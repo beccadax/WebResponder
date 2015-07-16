@@ -9,6 +9,17 @@
 import XCTest
 @testable import WebResponderCore
 
+private enum TestError: ErrorType {
+    case SomeError
+}
+
+private func ~=<T: ErrorType where T: Equatable> (pattern: T, value: ErrorType?) -> Bool {
+    guard let value = value as? T else {
+        return false
+    }
+    return pattern == value
+}
+
 class RequestIDMiddlewareTests: XCTestCase {
     func middlewareWithResponder(implementation: SimpleWebResponder.Implementation) -> RequestIDMiddleware {
         let middleware = RequestIDMiddleware()
@@ -67,6 +78,20 @@ class RequestIDMiddlewareTests: XCTestCase {
         let chain = responder.withHelperResponders()
         
         chain.respond(SimpleHTTPResponse(), toRequest: SimpleHTTPRequest())
+    }
+    
+    func testError() {
+        middlewareWithResponder { response, error, request, _ in
+            if let error = error {
+                let ck = TestError.SomeError ~= error
+                XCTAssertTrue(ck, "Error passed through")
+            }
+            else {
+                XCTFail("Error didn't pass through RequestIDMiddleware")
+            }
+            XCTAssertNotNil(request.requestID, "requestID isn't nil with error")
+            XCTAssertFalse(request.requestID?.isEmpty ?? false, "requestID isn't empty string with error")
+        }.respond(SimpleHTTPResponse(), withError: TestError.SomeError, toRequest: SimpleHTTPRequest())
     }
     
     // This may not be fully covered by the other tests depending on the UUIDs they end up generating.
