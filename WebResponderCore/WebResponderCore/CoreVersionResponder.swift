@@ -38,17 +38,18 @@ private func aggressivelyEscapeHTML(string: String) -> String {
 }
 
 private func uname() throws -> (sysname: String, nodename: String, release: String, version: String, machine: String) {
-    func t2s<T>(var tuple: T) -> String {
-        return withUnsafePointer(&tuple) { tuplePointer in
-            String.fromCString(UnsafePointer<Int8>(tuplePointer))!
-        }
-    }
     
     var unameResult = utsname()
     
     try errnoThrowing(uname, errorValue: 0)(&unameResult)
     
-    return (t2s(unameResult.sysname), t2s(unameResult.nodename), t2s(unameResult.release), t2s(unameResult.release), t2s(unameResult.machine))
+    return (unsafeFromCString(unameResult.sysname), unsafeFromCString(unameResult.nodename), unsafeFromCString(unameResult.release), unsafeFromCString(unameResult.release), unsafeFromCString(unameResult.machine))
+}
+
+internal func unsafeFromCString<T>(var tuple: T) -> String {
+    return withUnsafePointer(&tuple) { tuplePointer in
+        String.fromCString(UnsafePointer<Int8>(tuplePointer))!
+    }
 }
 
 internal func errnoThrowing<T, U: Equatable>(fn: T -> U, errorValue: U)(_ args: T) throws -> U {

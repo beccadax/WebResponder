@@ -68,6 +68,10 @@ class CoreVersionResponderTests: XCTestCase {
         AssertDoesNotThrow(try throwingErrnoFunc(false), "Successful call doesn't throw")
         AssertThrows(try throwingErrnoFunc(true), expectedError: NSError(domain: NSPOSIXErrorDomain, code: Int(ENOENT), userInfo: [:]), "Failing call throws appropriate error")
     }
+    
+    func testTupleConversion() {
+        XCTAssertEqual(unsafeFromCString((0x30, 0x40, 0x50, 0) as (UInt8, UInt8, UInt8, UInt8)), "\u{30}\u{40}\u{50}", "Tuple conversion doesn't suck")
+    }
 }
 
 private func AssertDoesNotThrow<T>(@autoclosure expr: () throws -> T, _ message: String, file: String = __FILE__, line: UInt = __LINE__) {
