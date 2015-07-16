@@ -10,22 +10,14 @@ import XCTest
 import WebResponderCore
 
 class CoreVersionResponderTests: XCTestCase {
-
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func responderTest(completion: (SimpleHTTPResponse, ErrorType?) -> Void) {
+    func responderTest(completion: (HTTPResponseType, ErrorType?) -> Void) {
         let responder = CoreVersionResponder()
+        responder.insertNextResponder(SimpleWebResponder { response, error, _, _ in
+            completion(response, error)
+        })
         
         let request = SimpleHTTPRequest()
-        let response = SimpleHTTPResponse(completion: completion)
+        let response = SimpleHTTPResponse()
         
         responder.respond(response, toRequest: request)
     }

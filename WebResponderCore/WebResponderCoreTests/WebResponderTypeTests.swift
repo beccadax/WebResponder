@@ -10,14 +10,16 @@ import XCTest
 import WebResponderCore
 
 private class TestResponder: WebResponderType {
+    var nextResponder: WebResponderRespondable!
+    
     private func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
         fatalError("respond(_:toRequest:) not needed for this test")
     }
 }
 
 class WebResponderTypeTests: XCTestCase {
-    func testDefaultRequiredMiddleware() {
+    func testDefaultHelperResponders() {
         let testResponder = TestResponder()
-        XCTAssert(testResponder.requiredMiddleware.isEmpty, "Default requiredMiddleware is empty")
+        XCTAssert(testResponder.helperResponders().isEmpty, "Default helperResponders is empty")
     }
 }

@@ -26,18 +26,6 @@ private class RootTestResponse: HTTPResponseType {
     func setBody(newValue: HTTPBodyType) {
         body = newValue
     }
-    
-    var didRespond = false
-    
-    func respond() {
-        didRespond = true
-    }
-    
-    var failedWithError: ErrorType?
-    
-    func failWithError(error: ErrorType) {
-        failedWithError = error
-    }
 }
 
 private class LayeredTestResponse: LayeredHTTPResponseType {
@@ -86,22 +74,6 @@ class HTTPResponseTypeTests: XCTestCase {
         let body = EmptyHTTPBody()
         layeredTestResponse.setBody(body)
         XCTAssert(rootTestResponse.body === body, "Layered response sets body on next response")
-    }
-    
-    func testLayeredRespond() {
-        layeredTestResponse.respond()
-        XCTAssertTrue(rootTestResponse.didRespond, "Layered response relays respond to next response")
-    }
-    
-    func testLayeredFail() {
-        layeredTestResponse.failWithError(NSCocoaError.CoreDataError)
-        
-        guard let error = rootTestResponse.failedWithError else {
-            XCTFail("Layered response relays failure to next response")
-            return
-        }
-        
-        XCTAssertTrue(NSCocoaError.CoreDataError ~= error, "Layered response relays failure's error to next response")
     }
 }
 
