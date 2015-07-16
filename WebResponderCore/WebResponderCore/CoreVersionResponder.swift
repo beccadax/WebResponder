@@ -45,10 +45,18 @@ private func uname() throws -> (sysname: String, nodename: String, release: Stri
     }
     
     var unameResult = utsname()
-    if uname(&unameResult) == 0 {
-        return (t2s(unameResult.sysname), t2s(unameResult.nodename), t2s(unameResult.release), t2s(unameResult.release), t2s(unameResult.machine))
+    
+    try errnoThrowing(uname, errorValue: 0)(&unameResult)
+    
+    return (t2s(unameResult.sysname), t2s(unameResult.nodename), t2s(unameResult.release), t2s(unameResult.release), t2s(unameResult.machine))
+}
+
+internal func errnoThrowing<T, U: Equatable>(fn: T -> U, errorValue: U)(_ args: T) throws -> U {
+    let value = fn(args)
+    if value == errorValue {
+        throw NSError(domain: NSPOSIXErrorDomain, code: Int(errno), userInfo: [:]) 
     }
     else {
-        throw NSError(domain: NSPOSIXErrorDomain, code: Int(errno), userInfo: [:])
+        return value
     }
 }
