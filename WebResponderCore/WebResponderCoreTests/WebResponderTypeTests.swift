@@ -22,4 +22,15 @@ class WebResponderTypeTests: XCTestCase {
         let testResponder = TestResponder()
         XCTAssert(testResponder.helperResponders().isEmpty, "Default helperResponders is empty")
     }
+    
+    func testDefaultErrorImplementation() {
+        let intendedError = NSCocoaError.CoreDataError
+        
+        let testResponder = TestResponder()
+        testResponder.nextResponder = SimpleWebResponder { response, error, request, next in
+            XCTAssertTrue(intendedError ~= error, "Correct error passed through default implementation of respond(_:withError:toRequest:)")
+        }
+        
+        testResponder.respond(SimpleHTTPResponse(), withError: intendedError as ErrorType, toRequest: SimpleHTTPRequest())
+    }
 }
