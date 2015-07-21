@@ -72,6 +72,38 @@ class WebResponderChainTests: XCTestCase {
         XCTAssertTrue(requestID != nil, "Middleware runs in correct order")
     }
     
+    func testCompleteChain() {
+        class MockServer: WebResponderChainable {
+            var nextResponder: WebResponderRespondable! = Tail()
+            
+            class Tail: WebResponderRespondable {
+                var responded = false
+                
+                private func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
+                    responded = true
+                }
+                
+                private func respond(response: HTTPResponseType, withError error: ErrorType, toRequest request: HTTPRequestType) {
+                    responded = true
+                }
+            }
+        }
+        
+        let server = MockServer()
+        let serverTail = server.nextResponder as! MockServer.Tail
+        
+        let responder = SimpleWebResponder { response, error, request, next in
+            next.respond(response, toRequest: request)
+        }
+        
+        server.insertNextResponder(responder)
+        XCTAssert(server.nextResponder === responder, "After insertion, server.nextResponder == responder")
+        XCTAssert(responder.nextResponder === serverTail, "After insertion, responder.nextResponder === serverTail")
+        
+        server.nextResponder.respond(SimpleHTTPResponse(), toRequest: SimpleHTTPRequest())
+        XCTAssertTrue(serverTail.responded, "Request passed through complete responder chain")
+    }
+    
 //    func testResponderChainMutation() {
 //        var finalResponderRequestID: String?
 //        var middlewareRequestID: String?
