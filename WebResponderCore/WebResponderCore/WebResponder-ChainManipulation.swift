@@ -60,12 +60,18 @@ extension WebResponderChainable {
     }
     
     private var lastResponder: WebResponderRespondable? {
+        // Do we have a next responder?
         if let nextResponder = nextResponder {
-            if let nextResponder = nextResponder as? WebResponderType, tail = nextResponder.lastResponder {
-                return tail
+            // Is our next responder itself a WebResponderType?
+            if let nextResponder = nextResponder as? WebResponderType {
+                // Yes, ask it for its last responder.
+                return nextResponder.lastResponder!
             }
+            // No, our next responder is the last
             return nextResponder
         }
+        // No, self is the last responder (unless we're only WebResponderChainable, 
+        // in which case there is no last responder)
         return self as? WebResponderType
     }
 }
