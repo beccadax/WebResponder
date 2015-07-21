@@ -26,11 +26,15 @@ class WebResponderTypeTests: XCTestCase {
     func testDefaultErrorImplementation() {
         let intendedError = NSCocoaError.CoreDataError
         
+        var ran = false
+        
         let testResponder = TestResponder()
         testResponder.nextResponder = SimpleWebResponder { response, error, request, next in
+            ran = true
             XCTAssertTrue(intendedError ~= error, "Correct error passed through default implementation of respond(_:withError:toRequest:)")
         }
         
-        testResponder.respond(SimpleHTTPResponse(), withError: intendedError as ErrorType, toRequest: SimpleHTTPRequest())
+        testResponder.respond(SimpleHTTPResponse(), withError: intendedError, toRequest: SimpleHTTPRequest())
+        XCTAssertTrue(ran, "Default implementation of respond(_:withError:toRequest:) ran next responder")
     }
 }
