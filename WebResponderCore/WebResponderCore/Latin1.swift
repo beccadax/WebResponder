@@ -15,7 +15,7 @@ public struct Latin1: UnicodeCodecType {
     /// algorithms can be substituted by replacing this closure.
     public static var unknownCharacterHandler = { (_: UnicodeScalar) -> [UInt8] in Array("?".utf8) }
     
-    typealias CodeUnit = UInt8
+    public typealias CodeUnit = UInt8
     public init() {}
     
     /// Decodes a Latin-1 byte into a `UnicodeScalar`. Latin-1 decoding cannot fail.
@@ -31,18 +31,18 @@ public struct Latin1: UnicodeCodecType {
     /// Encodes a `UnicodeScalar` as one or more Latin-1 bytes. May call 
     /// `Latin1.unknownCharacterHandler` if the character cannot be represented in 
     /// Latin-1.
-    public static func encode<S : SinkType where S.Element == UInt8>(input: UnicodeScalar, inout output: S) {
+    public static func encode(input: UnicodeScalar, output: UInt8 -> Void) {
         switch input.value {
         case 0xFEFF:
             // Unicode byte order marker (or pointless space); ignore
             break
             
         case UInt8.range():
-            output.put(UInt8(input.value))
+            output(UInt8(input.value))
             
         default:
             for byte in unknownCharacterHandler(input) {
-                output.put(byte)
+                output(byte)
             }
         }
     }
