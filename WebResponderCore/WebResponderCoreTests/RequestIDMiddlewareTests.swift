@@ -13,7 +13,7 @@ private enum TestError: ErrorType {
     case SomeError
 }
 
-private func ~=<T: ErrorType where T: Equatable> (pattern: T, value: ErrorType?) -> Bool {
+func ~=<T: ErrorType where T: Equatable> (pattern: T, value: ErrorType?) -> Bool {
     guard let value = value as? T else {
         return false
     }
