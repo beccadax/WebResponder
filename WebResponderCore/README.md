@@ -16,11 +16,9 @@ WebResponderCore contains the core types for WebResponder:
    participates in the handling of requests. `WebResponderType` is based on 
    two other protocols: `WebResponderChainable` and 
    `WebResponderRespondable`.
-* `WebRequestable`, `WebMiddlewareType`, and `WebResponderChain`: Types for 
-  forming chains of middleware providing services to a final responder.
-* `SimpleHTTPRequest`, `SimpleHTTPResponse`, `SimpleWebResponder`, and 
-  `SimpleWebMiddleware`: Basic, usually block-based implementations of these 
-  protocols, useful for testing or quick-and-dirty implementations.
+* `SimpleHTTPRequest`, `SimpleHTTPResponse`, and `SimpleWebResponder`: Basic, 
+   sometimes block-based implementations of these protocols, useful for testing or 
+   quick-and-dirty implementations.
 * `RequestIDHelper`: Generates a unique UUID for each incoming request.
 * `CoreVersionResponder`: Displays WebResponder version information.
 * `UnicodeEncoder` and `UnicodeDecoder`: Lazily converts between streams of 
@@ -36,38 +34,40 @@ Responders
 --------
 
 Any object that helps process a request is a responder and conforms to the 
-`WebResponderType` protocol. This protocol requires that you implement one method:
+`WebResponderType` protocol. This protocol requires that you implement two methods:
 
     func respond(response: HTTPResponseType, toRequest request: HTTPRequestType)
+
+A variant of this method adds a `withError:` parameter, indicating that an error 
+has occurred.
 
 In this method, `request` is an input, while `response` is essentially an output. 
 You read information from `request` to determine what to do, and then write to 
 `response` to send information back to the client.
 
-Once you've finished, you can basically do three things: 
+Once you've finished, you call either `respond(_:toRequest:)` on your 
+`nextResponder` to continue processing normally, or 
+`respond(_:withError:toRequest:)` if processing failed. WebResponder is intended to
+support asynchronous processing, so you can delay passing a response to the 
+`nextResponder` until after you've returned.
 
-1. Tell the `response` to begin sending itself by calling its `respond()` method.
-2. Signal that an error occurred while processing the request by calling the 
-    `response`'s `failWithError(_:)` method.
-3. Forward the request and response to another responder to do additional
-    processing. If your responder does this in a simple linear way, it should be a 
-    middleware, conforming to `WebMiddlewareType` and forwarding the request 
-    through the `sendRequestToNextResponder(_:response:)` method.
+You can directly set `nextResponder` to set up the responder chain, but unless 
+you're initializing an object, you'll usually want to insert it between two existing
+responders. The `insertNextResponder(_:)` method does that thing.
 
-The response is not sent until `respond()` or `failWithError(_:)` is called, so 
-a responder can hold onto the request and response while it performs asynchronous 
-calls and use them later.
+Helper Responders
+-------------
 
-A middleware's `respond(_:toRequest:)` method runs before the final responder's, 
-so if a middleware wants to insert logic that's performed *after* it, it will need 
-to wrap the `response` passed to its next responder in a custom type with a 
-different implementation of `respond()`. Middleware may also replace the `request` 
-or `response` with a custom type to make additional data or functionality 
-accessible to responders later in the responder chain.
+A responder can specify "helper responders" which should be inserted before it in 
+the responder chain. To do this, it should override the `helperResponders()` method 
+to return an array of such responders. Calling `withHelperResponders()` on a 
+responder will connect all of the helper responders to the original responder and 
+return the first of them.
 
-The `WebResponderChain` class manages a series of middleware terminating in a 
-final responder, making it more convenient to build up and manipulate such a 
-structure.
+A helper responder is always inserted before the responder that requested it, but 
+sometimes you want to add processing *after* the responder you're helping. You 
+can do that by setting a `nextResponder` immediately in your initializer; then the 
+responder you're helping will be inserted between the two.
 
 Author
 -----
