@@ -24,52 +24,52 @@ class WebResponderChainTests: XCTestCase {
         XCTAssertTrue(ran, "Runs final responder")
     }
     
-    func testRequiredMiddleware() {
+    func testHelperResponders() {
         var ran = false
-        let middleware = SimpleWebResponder { response, _, request, next in
+        let helper = SimpleWebResponder { response, _, request, next in
             ran = true
             next.respond(response, toRequest: request)
         }
-        let finalResponder = SimpleWebResponder(helperResponders: [middleware]) { response, _, request, _ in }
+        let finalResponder = SimpleWebResponder(helperResponders: [helper]) { response, _, request, _ in }
         let chain = finalResponder.withHelperResponders()
         
-        XCTAssertTrue(chain === middleware, "Helper responders are inserted")
+        XCTAssertTrue(chain === helper, "Helper responders are inserted")
         XCTAssertTrue(chain.nextResponder === finalResponder, "Final responder is correct with helpers")
         
         chain.respond(SimpleHTTPResponse(), toRequest: SimpleHTTPRequest())
-        XCTAssertTrue(ran, "Runs middleware")
+        XCTAssertTrue(ran, "Runs helper")
     }
     
     func testHelperRespondersMultiple() {
         var requestID: String?
-        let middleware = SimpleWebResponder { response, _, request, next in
+        let helper = SimpleWebResponder { response, _, request, next in
             requestID = request.requestID
             next.respond(response, toRequest: request)
         }
-        let finalResponder = SimpleWebResponder(helperResponders: [RequestIDMiddleware(), middleware]) { response, _, request, _ in }
+        let finalResponder = SimpleWebResponder(helperResponders: [RequestIDHelper(), helper]) { response, _, request, _ in }
         let chain = finalResponder.withHelperResponders()
         
-        XCTAssertTrue((chain.nextResponder as! WebResponderType).nextResponder === finalResponder, "Final responder is correct with middleware")
-        XCTAssertTrue(chain is RequestIDMiddleware, "Earlier required middleware inserted ahead of later required middleware")
+        XCTAssertTrue((chain.nextResponder as! WebResponderType).nextResponder === finalResponder, "Final responder is correct with helper responder")
+        XCTAssertTrue(chain is RequestIDHelper, "Earlier helper responder inserted ahead of later helper responder")
         
         chain.respond(SimpleHTTPResponse(), toRequest: SimpleHTTPRequest())
-        XCTAssertTrue(requestID != nil, "Middleware runs in correct order")
+        XCTAssertTrue(requestID != nil, "Helper runs in correct order")
     }
     
     func testHelperRespondersNested() {
         var requestID: String?
-        let middleware = SimpleWebResponder(helperResponders: [RequestIDMiddleware()]) { response, _, request, next in
+        let helper = SimpleWebResponder(helperResponders: [RequestIDHelper()]) { response, _, request, next in
             requestID = request.requestID
             next.respond(response, toRequest: request)
         }
-        let finalResponder = SimpleWebResponder(helperResponders: [middleware]) { response, _, request, _ in }
+        let finalResponder = SimpleWebResponder(helperResponders: [helper]) { response, _, request, _ in }
         let firstResponder = finalResponder.withHelperResponders()
         
-        XCTAssertTrue((firstResponder.nextResponder as? WebResponderType)?.nextResponder === finalResponder, "Final responder is correct with middleware")
-        XCTAssertTrue(firstResponder is RequestIDMiddleware, "Nested required middleware inserted ahead of simple middleware")
+        XCTAssertTrue((firstResponder.nextResponder as? WebResponderType)?.nextResponder === finalResponder, "Final responder is correct with helper responder")
+        XCTAssertTrue(firstResponder is RequestIDHelper, "Nested helper responder inserted ahead of top-level one")
         
         firstResponder.respond(SimpleHTTPResponse(), toRequest: SimpleHTTPRequest())
-        XCTAssertTrue(requestID != nil, "Middleware runs in correct order")
+        XCTAssertTrue(requestID != nil, "Helpers run in correct order")
     }
     
     func testCompleteChain() {

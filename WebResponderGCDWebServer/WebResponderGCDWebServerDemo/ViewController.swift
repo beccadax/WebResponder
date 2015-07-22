@@ -12,7 +12,7 @@ import WebResponderGCDWebServer
 
 class ViewController: NSViewController, GCDWebServerDelegate, NSTableViewDataSource {
     let webServer = WebResponderGCDWebServer()
-    lazy var recorder: EventRecorderMiddleware = EventRecorderMiddleware(appendHandler: self.appendedEvent)
+    lazy var recorder: EventRecorderHelper = EventRecorderHelper(appendHandler: self.appendedEvent)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,7 @@ class ViewController: NSViewController, GCDWebServerDelegate, NSTableViewDataSou
         linkField.attributedStringValue = NSAttributedString(string: url.absoluteString, attributes: [NSLinkAttributeName: url])
     }
     
-    func appendedEvent(recorder: EventRecorderMiddleware, index: Int) {
+    func appendedEvent(recorder: EventRecorderHelper, index: Int) {
         tableView.beginUpdates()
         tableView.insertRowsAtIndexes(NSIndexSet(index: index), withAnimation: .EffectFade)
         tableView.endUpdates()

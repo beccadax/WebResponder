@@ -1,5 +1,5 @@
 //
-//  RequestIDMiddleware.swift
+//  RequestIDHelper.swift
 //  WebResponderCore
 //
 //  Created by Brent Royal-Gordon on 6/27/15.
@@ -9,7 +9,7 @@
 /// A `WebResponderType` which assigns a hexadecimal UUID to each request.
 /// Responders deeper in the responder chain can access this ID through the 
 /// `requestID` property on `HTTPRequestType`.
-public class RequestIDMiddleware: WebResponderType {
+public class RequestIDHelper: WebResponderType {
     public var nextResponder: WebResponderRespondable!
     
     public init() {}
@@ -57,7 +57,7 @@ struct IdentifiedRequest: LayeredHTTPRequestType {
 }
 
 public extension HTTPRequestType {
-    /// A unique ID for the request. Available only if a `RequestIDMiddleware` is 
+    /// A unique ID for the request. Available only if a `RequestIDHelper` is 
     /// installed earlier in the responder chain.
     var requestID: String? {
         return requestOfType(IdentifiedRequest.self)?.requestID

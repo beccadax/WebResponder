@@ -21,7 +21,7 @@ WebResponderCore contains the core types for WebResponder:
 * `SimpleHTTPRequest`, `SimpleHTTPResponse`, `SimpleWebResponder`, and 
   `SimpleWebMiddleware`: Basic, usually block-based implementations of these 
   protocols, useful for testing or quick-and-dirty implementations.
-* `RequestIDMiddleware`: Generates a unique UUID for each incoming request.
+* `RequestIDHelper`: Generates a unique UUID for each incoming request.
 * `CoreVersionResponder`: Displays WebResponder version information.
 * `UnicodeEncoder` and `UnicodeDecoder`: Lazily converts between streams of 
   Unicode bytes and Swift `UnicodeScalar`s.

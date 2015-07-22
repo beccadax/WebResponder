@@ -7,7 +7,7 @@
 //
 
 /// A `WebResponderType` with `respond(_:toRequest:)` implemented by a closure, 
-/// `requiredMiddleware` passed to the initializer, and no other special logic.
+/// `helperResponders` passed to the initializer, and no other special logic.
 public final class SimpleWebResponder: WebResponderType {
     /// An `Implementation` is called with the `response` and `request`. Like any 
     /// responder, it should arrange to call either `respond()` or `failWithError(_:)`

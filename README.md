@@ -8,8 +8,8 @@ Okay, what's a middleware stack?
 -------------------------
 
 A middleware stack is an abstraction layer between an in-process web server and a 
-web framework; it also allows processing steps, called middleware, to be shared 
-between different frameworks.
+web framework; it also allows processing steps, called helper responders in 
+WebResponder, to be shared between different frameworks.
 
 If you're familiar with other open-source web app stacks, Ruby's 
 [Rack](https://github.com/rack/rack) and Node.js's 
@@ -23,10 +23,10 @@ That means two things:
 
 1. A web app framework built with WebResponder can be used with any server that 
     can be connected to WebResponder. You can mix-and-match them at will.
-2. A web app framework built with WebResponder can rely on WebResponder 
-    middleware to share logic with other frameworks. For instance, if there's a 
-    WebResponder middleware for parsing query strings, all frameworks could use 
-    that middleware instead of implementing their own parsing.
+2. A web app framework built with WebResponder can rely on helper responders to 
+    share logic with other frameworks. For instance, if there's a WebResponder 
+    helper for parsing query strings, all frameworks could use that helper instead 
+    of implementing their own parsing.
 
 So this isn't Cocoa for web apps?
 -------------------------
@@ -39,11 +39,11 @@ What's built for WebResponder so far?
 Er, not much yet. This repository contains two frameworks:
 
 1. `WebResponderCore`, which contains the core types, as well as a 
-    `RequestIDMiddleware` (which generates a unique UUID for each request it 
+    `RequestIDHelper` (which generates a unique UUID for each request it 
     processes) and `CoreVersionResponder` (which generates an HTML page 
     identifying the version of WebResponder that's running). These are largely for 
-    demoing and sample code, although `RequestIDMiddleware` is a genuinely useful 
-    middleware.
+    demoing and sample code, although `RequestIDHelper` is a genuinely useful 
+    helper responder.
 2. `WebResponderGCDWebServer` adapts the popular [GCDWebServer](https://github.com/swisspol/GCDWebServer)
     library for use with WebResponder. It also includes a demo Mac app which serves 
     `CoreVersionResponder` over Bonjour, and logs requests and responses in a 

@@ -1,5 +1,5 @@
 //
-//  EventRecorderMiddleware.swift
+//  EventRecorderHelper.swift
 //  WebResponderGCDWebServer
 //
 //  Created by Brent Royal-Gordon on 7/2/15.
@@ -9,15 +9,15 @@
 import Foundation
 import WebResponderCore
 
-class EventRecorderMiddleware: WebResponderType {
+class EventRecorderHelper: WebResponderType {
     lazy var nextResponder: WebResponderRespondable! = Trailer(recorder: self)
     
     var events: [Event] = []
     func helperResponders() -> [WebResponderType] {
-        return [ RequestIDMiddleware() ]
+        return [ RequestIDHelper() ]
     }
     
-    typealias AppendHandler = (EventRecorderMiddleware, Int) -> Void
+    typealias AppendHandler = (EventRecorderHelper, Int) -> Void
     var appendHandler: AppendHandler
     
     init(appendHandler: AppendHandler) {
@@ -45,9 +45,9 @@ class EventRecorderMiddleware: WebResponderType {
     
     class Trailer: WebResponderType {
         var nextResponder: WebResponderRespondable!
-        let recorder: EventRecorderMiddleware
+        let recorder: EventRecorderHelper
         
-        init(recorder: EventRecorderMiddleware) {
+        init(recorder: EventRecorderHelper) {
             self.recorder = recorder
         }
         
