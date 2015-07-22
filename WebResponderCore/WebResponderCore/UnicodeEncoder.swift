@@ -33,11 +33,10 @@ public struct UnicodeEncoder<UnicodeCodec: UnicodeCodecType, Sequence: SequenceT
                 return nil
             }
             
-            var sink = SinkOf<UnicodeCodec.CodeUnit> { codeUnit in
+            UnicodeCodec.encode(scalar) { codeUnit in
                 self.byteBuffer.extend(codeUnit.bigEndianBytes)
                 return
             }
-            UnicodeCodec.encode(scalar, output: &sink)
         }
         
         estimatedScalars--

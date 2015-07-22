@@ -1,26 +1,30 @@
 //
-//  RequestIDMiddleware.swift
+//  RequestIDHelper.swift
 //  WebResponderCore
 //
 //  Created by Brent Royal-Gordon on 6/27/15.
 //  Copyright © 2015 Groundbreaking Software. All rights reserved.
 //
 
-/// A `WebResponderMiddleware` which assigns a hexadecimal UUID to each request.
+/// A `WebResponderType` which assigns a hexadecimal UUID to each request.
 /// Responders deeper in the responder chain can access this ID through the 
-/// `requestID` properties on both `HTTPRequestType` and `HTTPResponseType`.
-public class RequestIDMiddleware: WebMiddlewareType {
-    public var nextResponder: WebResponderType!
+/// `requestID` property on `HTTPRequestType`.
+public class RequestIDHelper: WebResponderType {
+    public var nextResponder: WebResponderRespondable!
     
     public init() {}
     
-    public func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
+    private func wrapRequest(request: HTTPRequestType) -> HTTPRequestType {
         let ID = request.requestID ?? String.hexadecimalUUIDString()
-        
-        let newRequest = IdentifiedRequest(previousRequest: request, requestID: ID)
-        let newResponse = IdentifiedResponse(nextResponse: response, requestID: ID)
-        
-        sendRequestToNextResponder(newRequest, withResponse: newResponse)
+        return IdentifiedRequest(previousRequest: request, requestID: ID)
+    }
+    
+    public func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
+        nextResponder.respond(response, toRequest: wrapRequest(request))
+    }
+    
+    public func respond(response: HTTPResponseType, withError error: ErrorType, toRequest request: HTTPRequestType) {
+        nextResponder.respond(response, withError: error, toRequest: wrapRequest(request))
     }
 }
 
@@ -53,27 +57,9 @@ struct IdentifiedRequest: LayeredHTTPRequestType {
 }
 
 public extension HTTPRequestType {
-    /// A unique ID for the request. Available only if a `RequestIDMiddleware` is 
+    /// A unique ID for the request. Available only if a `RequestIDHelper` is 
     /// installed earlier in the responder chain.
     var requestID: String? {
         return requestOfType(IdentifiedRequest.self)?.requestID
-    }
-}
-
-class IdentifiedResponse: LayeredHTTPResponseType {
-    let nextResponse: HTTPResponseType
-    let requestID: String?
-    
-    init(nextResponse: HTTPResponseType, requestID: String) {
-        self.nextResponse = nextResponse
-        self.requestID = requestID
-    }
-}
-
-public extension HTTPResponseType {
-    /// A unique ID for the response's request. Available only if a 
-    /// `RequestIDMiddleware` is installed earlier in the responder chain.
-    var requestID: String? {
-        return responseOfType(IdentifiedResponse.self)?.requestID
     }
 }

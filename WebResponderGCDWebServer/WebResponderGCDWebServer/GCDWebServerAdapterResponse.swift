@@ -31,16 +31,6 @@ class GCDWebServerAdapterResponse: HTTPResponseType {
         body = newValue
     }
     
-    func failWithError(error: ErrorType) {
-        let error = error as NSError
-        
-        status = 500
-        headers = ["Content-Type": [ "text/plain; charset=UTF-8" ]]
-        body = HTTPBody(string: error.description, codec: UTF8.self)
-        
-        respond()
-    }
-    
     func respond() {
         var bytes = body.readBytes()
         

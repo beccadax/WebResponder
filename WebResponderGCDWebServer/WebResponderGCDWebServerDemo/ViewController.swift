@@ -11,16 +11,17 @@ import WebResponderCore
 import WebResponderGCDWebServer
 
 class ViewController: NSViewController, GCDWebServerDelegate, NSTableViewDataSource {
-    let webServer = GCDWebServer()
-    lazy var recorder: EventRecorderMiddleware = EventRecorderMiddleware(appendHandler: self.appendedEvent)
+    let webServer = WebResponderGCDWebServer()
+    lazy var recorder: EventRecorderHelper = EventRecorderHelper(appendHandler: self.appendedEvent)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let chain = WebResponderChain(finalResponder: CoreVersionResponder())
-        chain.prependMiddleware(recorder)
+        recorder.insertNextResponder(CoreVersionResponder().withHelperResponders())
         
-        webServer.makeFirstResponder(chain)
+        webServer.insertNextResponder(
+            recorder.withHelperResponders()
+        )
         
         webServer.delegate = self
         webServer.start()
@@ -32,7 +33,7 @@ class ViewController: NSViewController, GCDWebServerDelegate, NSTableViewDataSou
         linkField.attributedStringValue = NSAttributedString(string: url.absoluteString, attributes: [NSLinkAttributeName: url])
     }
     
-    func appendedEvent(recorder: EventRecorderMiddleware, index: Int) {
+    func appendedEvent(recorder: EventRecorderHelper, index: Int) {
         tableView.beginUpdates()
         tableView.insertRowsAtIndexes(NSIndexSet(index: index), withAnimation: .EffectFade)
         tableView.endUpdates()

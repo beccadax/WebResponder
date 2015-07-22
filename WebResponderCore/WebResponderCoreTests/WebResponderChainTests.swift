@@ -10,143 +10,175 @@ import XCTest
 import WebResponderCore
 
 class WebResponderChainTests: XCTestCase {
-    func testSimpleChain() {
+    func testNoHelpers() {
         var ran = false
-        let finalResponder = SimpleWebResponder { response, request in
+        let finalResponder = SimpleWebResponder { response, _, request, next in
             ran = true
         }
-        let chain = WebResponderChain(finalResponder: finalResponder)
+        let chain = finalResponder.withHelperResponders()
         
-        XCTAssertTrue(chain.finalResponder === finalResponder, "Final responder is correct")
-        XCTAssertTrue(chain.nextResponder === finalResponder, "Final responder with no requirements is also next responder")
+        XCTAssertTrue(chain === finalResponder, "withHelperResponders() returns self if there aren't any")
+        XCTAssertTrue(chain.nextResponder == nil, "withHelperResponders() doesn't add any additional responders")
         
-        chain.respond(SimpleHTTPResponse { _, _ in }, toRequest: SimpleHTTPRequest())
+        chain.respond(SimpleHTTPResponse(), toRequest: SimpleHTTPRequest())
         XCTAssertTrue(ran, "Runs final responder")
     }
     
-    func testRequiredMiddleware() {
+    func testHelperResponders() {
         var ran = false
-        let middleware = SimpleWebMiddleware { response, request, next in
+        let helper = SimpleWebResponder { response, _, request, next in
             ran = true
-            next(request, response)
+            next.respond(response, toRequest: request)
         }
-        let finalResponder = SimpleWebResponder(requiredMiddleware: [middleware]) { response, request in }
-        let chain = WebResponderChain(finalResponder: finalResponder)
+        let finalResponder = SimpleWebResponder(helperResponders: [helper]) { response, _, request, _ in }
+        let chain = finalResponder.withHelperResponders()
         
-        XCTAssertTrue(chain.finalResponder === finalResponder, "Final responder is correct with middleware")
-        XCTAssertTrue(chain.nextResponder === middleware, "Required middleware are inserted")
+        XCTAssertTrue(chain === helper, "Helper responders are inserted")
+        XCTAssertTrue(chain.nextResponder === finalResponder, "Final responder is correct with helpers")
         
-        chain.respond(SimpleHTTPResponse { _, _ in }, toRequest: SimpleHTTPRequest())
-        XCTAssertTrue(ran, "Runs middleware")
+        chain.respond(SimpleHTTPResponse(), toRequest: SimpleHTTPRequest())
+        XCTAssertTrue(ran, "Runs helper")
     }
     
-    func testRequiredMiddlewareMultiple() {
+    func testHelperRespondersMultiple() {
         var requestID: String?
-        let middleware = SimpleWebMiddleware { response, request, next in
+        let helper = SimpleWebResponder { response, _, request, next in
             requestID = request.requestID
-            next(request, response)
+            next.respond(response, toRequest: request)
         }
-        let finalResponder = SimpleWebResponder(requiredMiddleware: [RequestIDMiddleware(), middleware]) { response, request in }
-        let chain = WebResponderChain(finalResponder: finalResponder)
+        let finalResponder = SimpleWebResponder(helperResponders: [RequestIDHelper(), helper]) { response, _, request, _ in }
+        let chain = finalResponder.withHelperResponders()
         
-        XCTAssertTrue(chain.finalResponder === finalResponder, "Final responder is correct with middleware")
-        XCTAssertTrue(chain.nextResponder is RequestIDMiddleware, "Earlier required middleware inserted ahead of later required middleware")
+        XCTAssertTrue((chain.nextResponder as! WebResponderType).nextResponder === finalResponder, "Final responder is correct with helper responder")
+        XCTAssertTrue(chain is RequestIDHelper, "Earlier helper responder inserted ahead of later helper responder")
         
-        chain.respond(SimpleHTTPResponse { _, _ in }, toRequest: SimpleHTTPRequest())
-        XCTAssertTrue(requestID != nil, "Middleware runs in correct order")
+        chain.respond(SimpleHTTPResponse(), toRequest: SimpleHTTPRequest())
+        XCTAssertTrue(requestID != nil, "Helper runs in correct order")
     }
     
-    func testRequiredMiddlewareNested() {
+    func testHelperRespondersNested() {
         var requestID: String?
-        let middleware = SimpleWebMiddleware(requiredMiddleware: [RequestIDMiddleware()]) { response, request, next in
+        let helper = SimpleWebResponder(helperResponders: [RequestIDHelper()]) { response, _, request, next in
             requestID = request.requestID
-            next(request, response)
+            next.respond(response, toRequest: request)
         }
-        let finalResponder = SimpleWebResponder(requiredMiddleware: [middleware]) { response, request in }
-        let chain = WebResponderChain(finalResponder: finalResponder)
+        let finalResponder = SimpleWebResponder(helperResponders: [helper]) { response, _, request, _ in }
+        let firstResponder = finalResponder.withHelperResponders()
         
-        XCTAssertTrue(chain.finalResponder === finalResponder, "Final responder is correct with middleware")
-        XCTAssertTrue(chain.nextResponder is RequestIDMiddleware, "Nested required middleware inserted ahead of simple middleware")
+        XCTAssertTrue((firstResponder.nextResponder as? WebResponderType)?.nextResponder === finalResponder, "Final responder is correct with helper responder")
+        XCTAssertTrue(firstResponder is RequestIDHelper, "Nested helper responder inserted ahead of top-level one")
         
-        chain.respond(SimpleHTTPResponse { _, _ in }, toRequest: SimpleHTTPRequest())
-        XCTAssertTrue(requestID != nil, "Middleware runs in correct order")
+        firstResponder.respond(SimpleHTTPResponse(), toRequest: SimpleHTTPRequest())
+        XCTAssertTrue(requestID != nil, "Helpers run in correct order")
     }
     
-    func testResponderChainMutation() {
-        var finalResponderRequestID: String?
-        var middlewareRequestID: String?
-        
-        let middleware = SimpleWebMiddleware { response, request, next in
-            middlewareRequestID = request.requestID
-            next(request, response)
+    func testCompleteChain() {
+        class MockServer: WebResponderChainable {
+            var nextResponder: WebResponderRespondable! = Tail()
+            
+            class Tail: WebResponderRespondable {
+                var responded = false
+                
+                private func respond(response: HTTPResponseType, toRequest request: HTTPRequestType) {
+                    responded = true
+                }
+                
+                private func respond(response: HTTPResponseType, withError error: ErrorType, toRequest request: HTTPRequestType) {
+                    responded = true
+                }
+            }
         }
-        let finalResponder = SimpleWebResponder(requiredMiddleware: [middleware]) { response, request in
-            finalResponderRequestID = request.requestID
+        
+        let server = MockServer()
+        let serverTail = server.nextResponder as! MockServer.Tail
+        
+        let responder = SimpleWebResponder { response, error, request, next in
+            next.respond(response, toRequest: request)
         }
-        let chain = WebResponderChain(finalResponder: finalResponder)
         
-        let requestIDMiddleware = RequestIDMiddleware()
+        server.insertNextResponder(responder)
+        XCTAssert(server.nextResponder === responder, "After insertion, server.nextResponder == responder")
+        XCTAssert(responder.nextResponder === serverTail, "After insertion, responder.nextResponder === serverTail")
         
-        let rootRequest = SimpleHTTPRequest()
-        let rootResponse = SimpleHTTPResponse { _, _ in }
-        
-        chain.respond(rootResponse, toRequest: rootRequest)
-        XCTAssertNil(middlewareRequestID, "No requestID in middleware without request ID middleware installed")
-        XCTAssertNil(finalResponderRequestID, "No requestID in final without request ID midleware installed")
-        
-        chain.prependMiddleware(requestIDMiddleware)
-        
-        chain.respond(rootResponse, toRequest: rootRequest)
-        XCTAssertNotNil(middlewareRequestID, "Has requestID in middleware with request ID middleware prepended")
-        XCTAssertNotNil(finalResponderRequestID, "Has requestID in final with request ID midleware prepended")
-        
-        chain.removeMiddleware(requestIDMiddleware)
-        
-        chain.respond(rootResponse, toRequest: rootRequest)
-        XCTAssertNil(middlewareRequestID, "No requestID in middleware with request ID middleware removed")
-        XCTAssertNil(finalResponderRequestID, "No requestID in final with request ID midleware removed")
-        
-        chain.appendMiddleware(requestIDMiddleware)
-        
-        chain.respond(rootResponse, toRequest: rootRequest)
-        XCTAssertNil(middlewareRequestID, "No requestID in middleware with request ID middleware appended")
-        XCTAssertNotNil(finalResponderRequestID, "Has requestID in final with request ID midleware appended")
-        
-        chain.removeMiddleware(requestIDMiddleware)
-        chain.respond(rootResponse, toRequest: rootRequest)
-        XCTAssertNil(middlewareRequestID, "No requestID in middleware with request ID middleware removed near final responder")
-        XCTAssertNil(finalResponderRequestID, "No requestID in final with request ID midleware removed near final responder")
-        
-        chain.insertMiddleware(requestIDMiddleware, after: middleware)
-        
-        chain.respond(rootResponse, toRequest: rootRequest)
-        XCTAssertNil(middlewareRequestID, "No requestID in middleware with request ID middleware inserted after")
-        XCTAssertNotNil(finalResponderRequestID, "Has requestID in final with request ID midleware inserted after")
+        server.nextResponder.respond(SimpleHTTPResponse(), toRequest: SimpleHTTPRequest())
+        XCTAssertTrue(serverTail.responded, "Request passed through complete responder chain")
     }
     
-    func testResponderChainMutationFailures() {
-        func makeChain() -> (WebResponderChain, WebMiddlewareType, WebResponderType) {
-            let middleware = SimpleWebMiddleware { response, request, next in
-                next(request, response)
-            }
-            let finalResponder = SimpleWebResponder(requiredMiddleware: [middleware]) { response, request in
-            }
-            return (WebResponderChain(finalResponder: finalResponder), middleware, finalResponder)
-        }
-        
-        let (chain1, middleware1, _) = makeChain()
-        let (chain2, middleware2, _) = makeChain()
-        let otherMiddleware = RequestIDMiddleware()
-        
-        XCTAssertTrue(chain1.insertMiddleware(otherMiddleware, after: middleware1), "Valid insertMiddleware(_:after:) returns true")
-        
-        XCTAssertFalse(chain2.removeMiddleware(otherMiddleware), "Invalid removeMiddleware(_:) returns false")
-        XCTAssertTrue(chain1.removeMiddleware(otherMiddleware), "Valid removeMiddleware(_:) returns true")
-        
-        XCTAssertTrue(chain1.insertMiddleware(otherMiddleware, before: middleware1), "Valid insertMiddleware(_:before:) returns true")
-        XCTAssertTrue(chain1.removeMiddleware(otherMiddleware), "Valid removeMiddleware(_:) returns true")
-        
-        XCTAssertFalse(chain1.insertMiddleware(otherMiddleware, after: middleware2), "Invalid insertMiddleware(_:after:) returns false")
-        XCTAssertFalse(chain1.insertMiddleware(otherMiddleware, before: middleware2), "Invalid insertMiddleware(_:before:) returns false")
-    }
+//    func testResponderChainMutation() {
+//        var finalResponderRequestID: String?
+//        var middlewareRequestID: String?
+//        
+//        let middleware = SimpleWebMiddleware { response, _, request, next in
+//            middlewareRequestID = request.requestID
+//            next(request, response)
+//        }
+//        let finalResponder = SimpleWebResponder(requiredMiddleware: [middleware]) { response, request in
+//            finalResponderRequestID = request.requestID
+//        }
+//        let chain = WebResponderChain(finalResponder: finalResponder)
+//        
+//        let requestIDMiddleware = RequestIDMiddleware()
+//        
+//        let rootRequest = SimpleHTTPRequest()
+//        let rootResponse = SimpleHTTPResponse { _, _ in }
+//        
+//        chain.respond(rootResponse, toRequest: rootRequest)
+//        XCTAssertNil(middlewareRequestID, "No requestID in middleware without request ID middleware installed")
+//        XCTAssertNil(finalResponderRequestID, "No requestID in final without request ID midleware installed")
+//        
+//        chain.prependMiddleware(requestIDMiddleware)
+//        
+//        chain.respond(rootResponse, toRequest: rootRequest)
+//        XCTAssertNotNil(middlewareRequestID, "Has requestID in middleware with request ID middleware prepended")
+//        XCTAssertNotNil(finalResponderRequestID, "Has requestID in final with request ID midleware prepended")
+//        
+//        chain.removeMiddleware(requestIDMiddleware)
+//        
+//        chain.respond(rootResponse, toRequest: rootRequest)
+//        XCTAssertNil(middlewareRequestID, "No requestID in middleware with request ID middleware removed")
+//        XCTAssertNil(finalResponderRequestID, "No requestID in final with request ID midleware removed")
+//        
+//        chain.appendMiddleware(requestIDMiddleware)
+//        
+//        chain.respond(rootResponse, toRequest: rootRequest)
+//        XCTAssertNil(middlewareRequestID, "No requestID in middleware with request ID middleware appended")
+//        XCTAssertNotNil(finalResponderRequestID, "Has requestID in final with request ID midleware appended")
+//        
+//        chain.removeMiddleware(requestIDMiddleware)
+//        chain.respond(rootResponse, toRequest: rootRequest)
+//        XCTAssertNil(middlewareRequestID, "No requestID in middleware with request ID middleware removed near final responder")
+//        XCTAssertNil(finalResponderRequestID, "No requestID in final with request ID midleware removed near final responder")
+//        
+//        chain.insertMiddleware(requestIDMiddleware, after: middleware)
+//        
+//        chain.respond(rootResponse, toRequest: rootRequest)
+//        XCTAssertNil(middlewareRequestID, "No requestID in middleware with request ID middleware inserted after")
+//        XCTAssertNotNil(finalResponderRequestID, "Has requestID in final with request ID midleware inserted after")
+//    }
+//    
+//    func testResponderChainMutationFailures() {
+//        func makeChain() -> (WebResponderChain, WebMiddlewareType, WebResponderType) {
+//            let middleware = SimpleWebMiddleware { response, request, next in
+//                next(request, response)
+//            }
+//            let finalResponder = SimpleWebResponder(requiredMiddleware: [middleware]) { response, request in
+//            }
+//            return (WebResponderChain(finalResponder: finalResponder), middleware, finalResponder)
+//        }
+//        
+//        let (chain1, middleware1, _) = makeChain()
+//        let (chain2, middleware2, _) = makeChain()
+//        let otherMiddleware = RequestIDMiddleware()
+//        
+//        XCTAssertTrue(chain1.insertMiddleware(otherMiddleware, after: middleware1), "Valid insertMiddleware(_:after:) returns true")
+//        
+//        XCTAssertFalse(chain2.removeMiddleware(otherMiddleware), "Invalid removeMiddleware(_:) returns false")
+//        XCTAssertTrue(chain1.removeMiddleware(otherMiddleware), "Valid removeMiddleware(_:) returns true")
+//        
+//        XCTAssertTrue(chain1.insertMiddleware(otherMiddleware, before: middleware1), "Valid insertMiddleware(_:before:) returns true")
+//        XCTAssertTrue(chain1.removeMiddleware(otherMiddleware), "Valid removeMiddleware(_:) returns true")
+//        
+//        XCTAssertFalse(chain1.insertMiddleware(otherMiddleware, after: middleware2), "Invalid insertMiddleware(_:after:) returns false")
+//        XCTAssertFalse(chain1.insertMiddleware(otherMiddleware, before: middleware2), "Invalid insertMiddleware(_:before:) returns false")
+//    }
 }
